@@ -1,0 +1,2070 @@
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل التحويلات - Dar Wa Emaar Extensions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fff5f0 0%, #ffe8dc 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(243, 111, 42, 0.15);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #F36F2a 0%, #ff8c52 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: white;
+            color: #F36F2a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .lang-switch:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .admin-access {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            color: #F36F2a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .admin-access:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background: #F36F2a;
+            color: white;
+        }
+
+        .controls {
+            padding: 30px;
+            background: #fff5f0;
+            border-bottom: 3px solid #F36F2a;
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .control-group label {
+            font-weight: bold;
+            color: #F36F2a;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .control-group input,
+        .control-group select {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .control-group input:focus,
+        .control-group select:focus {
+            outline: none;
+            border-color: #F36F2a;
+            box-shadow: 0 0 0 3px rgba(243, 111, 42, 0.1);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: #F36F2a;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #d45e22;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(243, 111, 42, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-info {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .btn-info:hover {
+            background: #138496;
+            transform: translateY(-2px);
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+            transform: translateY(-2px);
+        }
+
+        .btn-icon {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+
+        .results-info {
+            padding: 20px 30px;
+            background: #fff5f0;
+            border-left: 5px solid #F36F2a;
+            margin: 0;
+            font-weight: bold;
+            color: #F36F2a;
+        }
+
+        .table-container {
+            padding: 30px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        thead {
+            background: linear-gradient(135deg, #F36F2a 0%, #ff8c52 100%);
+            color: white;
+        }
+
+        th {
+            padding: 18px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.05rem;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s;
+        }
+
+        tbody tr:hover {
+            background: #fff5f0;
+            transform: scale(1.01);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        td {
+            padding: 18px;
+            text-align: center;
+        }
+
+        .extension-cell {
+            font-weight: bold;
+            color: #F36F2a;
+            font-size: 1.1rem;
+        }
+
+        .name-cell {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .department-cell {
+            color: #666;
+        }
+
+        .region-cell {
+            display: inline-block;
+            padding: 6px 15px;
+            border-radius: 20px;
+            background: #fff5f0;
+            color: #F36F2a;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .actions-cell {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state svg {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .modal-content.large {
+            max-width: 800px;
+        }
+
+        .modal-header {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #F36F2a;
+        }
+
+        .modal-header h2 {
+            color: #F36F2a;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #F36F2a;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #F36F2a;
+            box-shadow: 0 0 0 3px rgba(243, 111, 42, 0.1);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #F36F2a;
+            font-size: 1.2rem;
+        }
+
+        .loading::after {
+            content: '...';
+            animation: dots 1.5s infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+
+        .admin-page {
+            display: none;
+        }
+
+        .admin-page.active {
+            display: block;
+        }
+
+        .admin-header {
+            background: linear-gradient(135deg, #F36F2a 0%, #ff8c52 100%);
+            color: white;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .admin-header h2 {
+            font-size: 2rem;
+        }
+
+        .admin-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .admin-email {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .admin-content {
+            padding: 30px;
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .settings-card {
+            background: #fff5f0;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #F36F2a;
+        }
+
+        .settings-card h3 {
+            color: #F36F2a;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .settings-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .settings-item {
+            background: white;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .settings-item-text {
+            flex: 1;
+        }
+
+        .settings-item-label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .settings-item-sublabel {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #c33;
+        }
+
+        .success-message {
+            background: #efe;
+            color: #2a7;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2a7;
+        }
+
+        .info-box {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-box h3 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        .info-box pre {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+
+        .file-upload-area {
+            border: 3px dashed #F36F2a;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            background: #fff5f0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-upload-area:hover {
+            background: #ffe8dc;
+            border-color: #d45e22;
+        }
+
+        .file-upload-area input[type="file"] {
+            display: none;
+        }
+
+        .file-upload-icon {
+            font-size: 3rem;
+            color: #F36F2a;
+            margin-bottom: 15px;
+        }
+
+        .preview-table {
+            max-height: 400px;
+            overflow-y: auto;
+            margin: 20px 0;
+        }
+
+        .preview-table table {
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .controls-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 12px 8px;
+            }
+
+            .lang-switch,
+            .admin-access {
+                position: static;
+                margin: 10px;
+            }
+
+            .header {
+                padding-top: 60px;
+            }
+
+            .admin-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Page -->
+    <div id="mainPage">
+        <div class="container">
+            <div class="header">
+                <button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
+                <button class="admin-access" onclick="showLoginModal()" id="adminBtn">صفحة الإدارة</button>
+                <h1 id="mainTitle">دليل التحويلات الداخلية</h1>
+                <p id="mainSubtitle">Dar Wa Emaar Internal Extensions Directory</p>
+            </div>
+
+            <div class="controls">
+                <div class="controls-grid">
+                    <div class="control-group">
+                        <label id="searchLabel">بحث (الاسم أو التحويلة):</label>
+                        <input type="text" id="searchInput" placeholder="ابحث عن موظف أو رقم تحويلة...">
+                    </div>
+
+                    <div class="control-group">
+                        <label id="regionLabel">المنطقة المكتبية:</label>
+                        <select id="regionFilter">
+                            <option value="">جميع المناطق</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label id="departmentLabel">القسم:</label>
+                        <select id="departmentFilter">
+                            <option value="">جميع الأقسام</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" onclick="clearFilters()" id="clearBtn">مسح الفلاتر</button>
+                </div>
+            </div>
+
+            <div class="results-info" id="resultsInfo">
+                جاري التحميل...
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th id="thExtension">التحويلة</th>
+                            <th id="thName">الاسم</th>
+                            <th id="thDepartment">القسم</th>
+                            <th id="thRegion">المنطقة المكتبية</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr>
+                            <td colspan="4" class="loading">جاري تحميل البيانات...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Page -->
+    <div id="adminPage" class="admin-page">
+        <div class="container">
+            <div class="admin-header">
+                <h2 id="adminTitle">Admin Dashboard</h2>
+                <div class="admin-info">
+                    <span class="admin-email" id="adminEmail"></span>
+                    <button class="btn btn-secondary" onclick="logout()" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+
+            <div class="admin-content">
+                <!-- Settings Section -->
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h3>
+                            <span id="departmentsTitle">Departments</span>
+                            <button class="btn btn-success btn-icon" onclick="openAddDepartmentModal()" id="addDeptBtn">+ Add</button>
+                        </h3>
+                        <div class="settings-list" id="departmentsList"></div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>
+                            <span id="regionsTitle">Office Regions</span>
+                            <button class="btn btn-success btn-icon" onclick="openAddRegionModal()" id="addRegionBtn">+ Add</button>
+                        </h3>
+                        <div class="settings-list" id="regionsList"></div>
+                    </div>
+                </div>
+
+                <!-- Extensions Management -->
+                <div class="action-buttons" style="margin-bottom: 30px;">
+                    <button class="btn btn-success" onclick="openAddModal()" id="addExtBtn">Add New Extension</button>
+                    <button class="btn btn-info" onclick="openBulkImportModal()" id="bulkImportBtn">Bulk Import</button>
+                    <button class="btn btn-primary" onclick="openBulkUpdateModal()" id="bulkUpdateBtn">Bulk Update</button>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Extension</th>
+                                <th>Name</th>
+                                <th>Department</th>
+                                <th>Region</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminTableBody">
+                            <tr>
+                                <td colspan="5" class="loading">Loading data...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Admin Login</h2>
+            </div>
+            <div id="loginError"></div>
+            <form id="loginForm" onsubmit="return handleLogin(event)">
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" id="emailInput" required>
+                </div>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" id="passwordInput" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeLoginModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add/Edit Extension Modal -->
+    <div class="modal" id="addModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add New Extension</h2>
+            </div>
+            <form id="addForm" onsubmit="return handleSaveExtension(event)">
+                <input type="hidden" id="editId">
+                <div class="form-group">
+                    <label>Extension Number:</label>
+                    <input type="text" id="extensionInput" required>
+                </div>
+                <div class="form-group">
+                    <label>Employee Name (Arabic):</label>
+                    <input type="text" id="nameArInput" required>
+                </div>
+                <div class="form-group">
+                    <label>Employee Name (English):</label>
+                    <input type="text" id="nameEnInput" required>
+                </div>
+                <div class="form-group">
+                    <label>Department:</label>
+                    <select id="departmentInput" required></select>
+                </div>
+                <div class="form-group">
+                    <label>Office Region:</label>
+                    <select id="regionInput" required></select>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeAddModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Department Modal -->
+    <div class="modal" id="addDepartmentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Department</h2>
+            </div>
+            <form id="addDepartmentForm" onsubmit="return handleSaveDepartment(event)">
+                <input type="hidden" id="editDeptId">
+                <div class="form-group">
+                    <label>Department Name (Arabic):</label>
+                    <input type="text" id="deptArInput" required>
+                </div>
+                <div class="form-group">
+                    <label>Department Name (English):</label>
+                    <input type="text" id="deptEnInput" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeAddDepartmentModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Region Modal -->
+    <div class="modal" id="addRegionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Office Region</h2>
+            </div>
+            <form id="addRegionForm" onsubmit="return handleSaveRegion(event)">
+                <input type="hidden" id="editRegionId">
+                <div class="form-group">
+                    <label>Region Name (Arabic):</label>
+                    <input type="text" id="regionArInput" required>
+                </div>
+                <div class="form-group">
+                    <label>Region Name (English):</label>
+                    <input type="text" id="regionEnInput" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeAddRegionModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bulk Import Modal -->
+    <div class="modal" id="bulkImportModal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>Bulk Import from CSV/Excel</h2>
+            </div>
+
+            <div class="info-box">
+                <h3>Required File Format:</h3>
+                <pre>extension,name_ar,name_en,department,region
+101,أحمد محمد,Ahmed Mohammed,IT,الرياض
+102,فاطمة علي,Fatima Ali,HR,Riyadh</pre>
+                <p style="margin-top: 10px; color: #2e7d32;"><strong>Note:</strong> You can use Arabic or English names for departments and regions</p>
+                <div style="margin-top: 15px;">
+                    <button class="btn btn-warning" onclick="downloadTemplate()">📥 Download Excel Template</button>
+                </div>
+            </div>
+
+            <div class="file-upload-area" onclick="document.getElementById('bulkImportFile').click()">
+                <div class="file-upload-icon">📁</div>
+                <p><strong>Click to select file</strong> or drag the file here</p>
+                <p>Supported formats: CSV, Excel (XLS, XLSX)</p>
+                <input type="file" id="bulkImportFile" accept=".csv,.xls,.xlsx" onchange="handleImportFile(event)">
+            </div>
+
+            <div id="importPreview"></div>
+            <div id="importMessage"></div>
+
+            <div class="modal-actions">
+                <button class="btn btn-success" onclick="confirmBulkImport()" id="importConfirmBtn" style="display: none;">Confirm Import</button>
+                <button class="btn btn-secondary" onclick="closeBulkImportModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bulk Update Modal -->
+    <div class="modal" id="bulkUpdateModal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>Bulk Update from CSV/Excel</h2>
+            </div>
+
+            <div class="info-box">
+                <h3>Required File Format:</h3>
+                <pre>extension,name_ar,name_en,department,region
+101,أحمد محمد المحدث,Ahmed Mohammed Updated,IT,الدمام
+102,,,HR,Riyadh</pre>
+                <p style="margin-top: 10px;"><strong>Note:</strong> Existing extensions will be updated based on extension number</p>
+                <div style="margin-top: 15px;">
+                    <button class="btn btn-warning" onclick="downloadTemplate()">📥 Download Excel Template</button>
+                </div>
+            </div>
+
+            <div class="file-upload-area" onclick="document.getElementById('bulkUpdateFile').click()">
+                <div class="file-upload-icon">📁</div>
+                <p><strong>Click to select file</strong> or drag the file here</p>
+                <p>Supported formats: CSV, Excel (XLS, XLSX)</p>
+                <input type="file" id="bulkUpdateFile" accept=".csv,.xls,.xlsx" onchange="handleUpdateFile(event)">
+            </div>
+
+            <div id="updatePreview"></div>
+            <div id="updateMessage"></div>
+
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="confirmBulkUpdate()" id="updateConfirmBtn" style="display: none;">Confirm Update</button>
+                <button class="btn btn-secondary" onclick="closeBulkUpdateModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div class="modal" id="deleteModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Confirm Deletion</h2>
+            </div>
+            <p id="deleteMessage" style="margin: 20px 0; font-size: 1.1rem;">Are you sure you want to delete this item?</p>
+            <div class="modal-actions">
+                <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+                <button class="btn btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, where } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCErZLrTPttPF6BGOEi-9SmXk8DDqBKNrA",
+            authDomain: "dar-wa-emaar-extensions.firebaseapp.com",
+            projectId: "dar-wa-emaar-extensions",
+            storageBucket: "dar-wa-emaar-extensions.firebasestorage.app",
+            messagingSenderId: "588544032878",
+            appId: "1:588544032878:web:f10e636440e3556b90e67f"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        let allExtensions = [];
+        let allDepartments = [];
+        let allRegions = [];
+        let currentLang = 'ar';
+        let isAdmin = false;
+        let deleteTargetId = null;
+        let deleteTargetType = null;
+        let currentUser = null;
+        let importData = [];
+        let updateData = [];
+
+        // Auth state
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUser = user;
+                isAdmin = true;
+                currentLang = 'en'; // Force English for admin
+                showAdminPage();
+            } else {
+                currentUser = null;
+                isAdmin = false;
+            }
+        });
+
+        // Language toggle
+        window.toggleLanguage = function() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            
+            // Update all UI text
+            updateUILanguage();
+            
+            // Refresh displays
+            filterAndDisplay();
+            populateDepartmentSelects();
+            populateRegionSelects();
+        };
+
+        function updateUILanguage() {
+            const texts = {
+                ar: {
+                    langBtn: 'English',
+                    adminBtn: 'صفحة الإدارة',
+                    mainTitle: 'دليل التحويلات الداخلية',
+                    mainSubtitle: 'Dar Wa Emaar Internal Extensions Directory',
+                    searchLabel: 'بحث (الاسم أو التحويلة):',
+                    searchPlaceholder: 'ابحث عن موظف أو رقم تحويلة...',
+                    regionLabel: 'المنطقة المكتبية:',
+                    departmentLabel: 'القسم:',
+                    clearBtn: 'مسح الفلاتر',
+                    thExtension: 'التحويلة',
+                    thName: 'الاسم',
+                    thDepartment: 'القسم',
+                    thRegion: 'المنطقة المكتبية'
+                },
+                en: {
+                    langBtn: 'العربية',
+                    adminBtn: 'Admin Panel',
+                    mainTitle: 'Internal Extensions Directory',
+                    mainSubtitle: 'دليل التحويلات الداخلية - دار وعمار',
+                    searchLabel: 'Search (Name or Extension):',
+                    searchPlaceholder: 'Search for employee or extension number...',
+                    regionLabel: 'Office Region:',
+                    departmentLabel: 'Department:',
+                    clearBtn: 'Clear Filters',
+                    thExtension: 'Extension',
+                    thName: 'Name',
+                    thDepartment: 'Department',
+                    thRegion: 'Office Region'
+                }
+            };
+
+            const t = texts[currentLang];
+            
+            // Main page elements
+            document.getElementById('langBtn').textContent = t.langBtn;
+            document.getElementById('adminBtn').textContent = t.adminBtn;
+            document.getElementById('mainTitle').textContent = t.mainTitle;
+            document.getElementById('mainSubtitle').textContent = t.mainSubtitle;
+            document.getElementById('searchLabel').textContent = t.searchLabel;
+            document.getElementById('searchInput').placeholder = t.searchPlaceholder;
+            document.getElementById('regionLabel').textContent = t.regionLabel;
+            document.getElementById('departmentLabel').textContent = t.departmentLabel;
+            document.getElementById('clearBtn').textContent = t.clearBtn;
+            
+            // Table headers
+            document.getElementById('thExtension').textContent = t.thExtension;
+            document.getElementById('thName').textContent = t.thName;
+            document.getElementById('thDepartment').textContent = t.thDepartment;
+            document.getElementById('thRegion').textContent = t.thRegion;
+        }
+
+        function updateAdminUILanguage() {
+            // Admin page is always in English
+            document.getElementById('adminTitle').textContent = 'Admin Dashboard';
+            document.getElementById('logoutBtn').textContent = 'Logout';
+            document.getElementById('departmentsTitle').textContent = 'Departments';
+            document.getElementById('regionsTitle').textContent = 'Office Regions';
+            document.getElementById('addDeptBtn').textContent = '+ Add';
+            document.getElementById('addRegionBtn').textContent = '+ Add';
+            document.getElementById('addExtBtn').textContent = 'Add New Extension';
+            document.getElementById('bulkImportBtn').textContent = 'Bulk Import';
+            document.getElementById('bulkUpdateBtn').textContent = 'Bulk Update';
+        }
+
+        // Helper functions
+        function getDisplayDepartment(deptId) {
+            if (!deptId) return '';
+            const dept = allDepartments.find(d => d.id === deptId);
+            if (!dept) return '';
+            // Admin page always shows English
+            return isAdmin ? dept.name_en : (currentLang === 'ar' ? dept.name_ar : dept.name_en);
+        }
+
+        function getDisplayRegion(regionId) {
+            if (!regionId) return '';
+            const region = allRegions.find(r => r.id === regionId);
+            if (!region) return '';
+            // Admin page always shows English
+            return isAdmin ? region.name_en : (currentLang === 'ar' ? region.name_ar : region.name_en);
+        }
+
+        function getDepartmentIdByName(name) {
+            if (!name) return null;
+            const dept = allDepartments.find(d => 
+                d.name_ar === name || d.name_en === name
+            );
+            return dept ? dept.id : null;
+        }
+
+        function getRegionIdByName(name) {
+            if (!name) return null;
+            const region = allRegions.find(r => 
+                r.name_ar === name || r.name_en === name
+            );
+            return region ? region.id : null;
+        }
+
+        // Load data with parallel execution and no orderBy (faster)
+        async function loadDepartments() {
+            try {
+                // Remove orderBy for faster loading, sort client-side instead
+                const querySnapshot = await getDocs(collection(db, 'departments'));
+                
+                allDepartments = [];
+                querySnapshot.forEach((doc) => {
+                    allDepartments.push({ id: doc.id, ...doc.data() });
+                });
+
+                // Sort client-side (much faster than Firebase orderBy without index)
+                allDepartments.sort((a, b) => {
+                    return a.name_ar.localeCompare(b.name_ar, 'ar');
+                });
+
+                if (isAdmin) {
+                    displayDepartments();
+                }
+                populateDepartmentSelects();
+                console.log('Departments loaded:', allDepartments.length);
+            } catch (error) {
+                console.error('Error loading departments:', error);
+            }
+        }
+
+        async function loadRegions() {
+            try {
+                // Remove orderBy for faster loading, sort client-side instead
+                const querySnapshot = await getDocs(collection(db, 'regions'));
+                
+                allRegions = [];
+                querySnapshot.forEach((doc) => {
+                    allRegions.push({ id: doc.id, ...doc.data() });
+                });
+
+                // Sort client-side (much faster than Firebase orderBy without index)
+                allRegions.sort((a, b) => {
+                    return a.name_ar.localeCompare(b.name_ar, 'ar');
+                });
+
+                if (isAdmin) {
+                    displayRegions();
+                }
+                populateRegionSelects();
+                console.log('Regions loaded:', allRegions.length);
+            } catch (error) {
+                console.error('Error loading regions:', error);
+            }
+        }
+
+        async function loadExtensions() {
+            try {
+                // Remove orderBy for faster loading, sort client-side instead
+                const querySnapshot = await getDocs(collection(db, 'extensions'));
+                
+                allExtensions = [];
+                querySnapshot.forEach((doc) => {
+                    allExtensions.push({ id: doc.id, ...doc.data() });
+                });
+
+                // Sort client-side by extension number
+                allExtensions.sort((a, b) => {
+                    const extA = parseInt(a.extension) || 0;
+                    const extB = parseInt(b.extension) || 0;
+                    return extA - extB;
+                });
+
+                filterAndDisplay();
+                if (isAdmin) {
+                    displayAdminExtensions();
+                }
+                console.log('Extensions loaded:', allExtensions.length);
+            } catch (error) {
+                console.error('Error loading extensions:', error);
+                document.getElementById('tableBody').innerHTML = `
+                    <tr>
+                        <td colspan="4" style="color: red; padding: 40px; text-align: center;">
+                            Error loading data. Please refresh the page.
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        // Load all data in parallel
+        async function loadAllData() {
+            try {
+                // Load all collections in parallel for better performance
+                await Promise.all([
+                    loadDepartments(),
+                    loadRegions(),
+                    loadExtensions()
+                ]);
+                console.log('All data loaded successfully');
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        }
+
+        // Display functions
+        function displayDepartments() {
+            const container = document.getElementById('departmentsList');
+            if (allDepartments.length === 0) {
+                container.innerHTML = `<p style="color: #999; text-align: center; padding: 20px;">No departments</p>`;
+                return;
+            }
+
+            container.innerHTML = allDepartments.map(dept => {
+                return `
+                    <div class="settings-item">
+                        <div class="settings-item-text">
+                            <div class="settings-item-label">${dept.name_en}</div>
+                            <div class="settings-item-sublabel">${dept.name_ar}</div>
+                        </div>
+                        <div class="actions-cell">
+                            <button class="btn btn-primary btn-icon" onclick="editDepartment('${dept.id}')">Edit</button>
+                            <button class="btn btn-danger btn-icon" onclick="showDeleteModal('department', '${dept.id}')">Delete</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function displayRegions() {
+            const container = document.getElementById('regionsList');
+            if (allRegions.length === 0) {
+                container.innerHTML = `<p style="color: #999; text-align: center; padding: 20px;">No regions</p>`;
+                return;
+            }
+
+            container.innerHTML = allRegions.map(region => {
+                return `
+                    <div class="settings-item">
+                        <div class="settings-item-text">
+                            <div class="settings-item-label">${region.name_en}</div>
+                            <div class="settings-item-sublabel">${region.name_ar}</div>
+                        </div>
+                        <div class="actions-cell">
+                            <button class="btn btn-primary btn-icon" onclick="editRegion('${region.id}')">Edit</button>
+                            <button class="btn btn-danger btn-icon" onclick="showDeleteModal('region', '${region.id}')">Delete</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function populateDepartmentSelects() {
+            const selects = [document.getElementById('departmentInput'), document.getElementById('departmentFilter')];
+            
+            selects.forEach(select => {
+                if (!select) return;
+                
+                const isFilter = select.id === 'departmentFilter';
+                const currentValue = select.value;
+                
+                // Clear and add default option
+                select.innerHTML = '';
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                
+                if (isAdmin) {
+                    // Admin page always in English
+                    defaultOption.textContent = isFilter ? 'All Departments' : 'Select Department';
+                } else {
+                    // Public page respects language setting
+                    defaultOption.textContent = isFilter ? 
+                        (currentLang === 'ar' ? 'جميع الأقسام' : 'All Departments') :
+                        (currentLang === 'ar' ? 'اختر القسم' : 'Select Department');
+                }
+                select.appendChild(defaultOption);
+                
+                // Add department options
+                allDepartments.forEach(dept => {
+                    const option = document.createElement('option');
+                    option.value = dept.id;
+                    // Admin shows English, public respects language setting
+                    option.textContent = isAdmin ? dept.name_en : (currentLang === 'ar' ? dept.name_ar : dept.name_en);
+                    select.appendChild(option);
+                });
+                
+                // Restore previous selection if it exists
+                if (currentValue) select.value = currentValue;
+            });
+        }
+
+        function populateRegionSelects() {
+            const selects = [document.getElementById('regionInput'), document.getElementById('regionFilter')];
+            
+            selects.forEach(select => {
+                if (!select) return;
+                
+                const isFilter = select.id === 'regionFilter';
+                const currentValue = select.value;
+                
+                // Clear and add default option
+                select.innerHTML = '';
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                
+                if (isAdmin) {
+                    // Admin page always in English
+                    defaultOption.textContent = isFilter ? 'All Regions' : 'Select Region';
+                } else {
+                    // Public page respects language setting
+                    defaultOption.textContent = isFilter ? 
+                        (currentLang === 'ar' ? 'جميع المناطق' : 'All Regions') :
+                        (currentLang === 'ar' ? 'اختر المنطقة' : 'Select Region');
+                }
+                select.appendChild(defaultOption);
+                
+                // Add region options
+                allRegions.forEach(region => {
+                    const option = document.createElement('option');
+                    option.value = region.id;
+                    // Admin shows English, public respects language setting
+                    option.textContent = isAdmin ? region.name_en : (currentLang === 'ar' ? region.name_ar : region.name_en);
+                    select.appendChild(option);
+                });
+                
+                // Restore previous selection if it exists
+                if (currentValue) select.value = currentValue;
+            });
+        }
+
+        function filterAndDisplay() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const regionFilter = document.getElementById('regionFilter').value;
+            const departmentFilter = document.getElementById('departmentFilter').value;
+
+            let filtered = allExtensions.filter(ext => {
+                const nameAr = ext.name_ar ? ext.name_ar.toLowerCase() : '';
+                const nameEn = ext.name_en ? ext.name_en.toLowerCase() : '';
+                const extensionStr = ext.extension ? String(ext.extension).toLowerCase() : '';
+                const matchesSearch = !searchTerm || 
+                    nameAr.includes(searchTerm) ||
+                    nameEn.includes(searchTerm) ||
+                    extensionStr.includes(searchTerm);
+                const matchesRegion = !regionFilter || ext.region_id === regionFilter;
+                const matchesDepartment = !departmentFilter || ext.department_id === departmentFilter;
+
+                return matchesSearch && matchesRegion && matchesDepartment;
+            });
+
+            displayExtensions(filtered);
+            updateResultsInfo(filtered.length);
+        }
+
+        function displayExtensions(extensions) {
+            const tbody = document.getElementById('tableBody');
+
+            if (extensions.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="4" class="empty-state">
+                            <h3>${currentLang === 'ar' ? 'لا توجد نتائج' : 'No results found'}</h3>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = extensions.map(ext => {
+                const name = currentLang === 'ar' ? ext.name_ar : ext.name_en;
+                const department = getDisplayDepartment(ext.department_id);
+                const region = getDisplayRegion(ext.region_id);
+                return `
+                    <tr>
+                        <td class="extension-cell">${ext.extension}</td>
+                        <td class="name-cell">${name}</td>
+                        <td class="department-cell">${department}</td>
+                        <td><span class="region-cell">${region}</span></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function displayAdminExtensions() {
+            const tbody = document.getElementById('adminTableBody');
+
+            if (allExtensions.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="empty-state">
+                            <h3>No extensions found</h3>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = allExtensions.map(ext => {
+                const department = getDisplayDepartment(ext.department_id);
+                const region = getDisplayRegion(ext.region_id);
+                return `
+                    <tr>
+                        <td class="extension-cell">${ext.extension}</td>
+                        <td class="name-cell">${ext.name_en}</td>
+                        <td class="department-cell">${department}</td>
+                        <td><span class="region-cell">${region}</span></td>
+                        <td>
+                            <div class="actions-cell">
+                                <button class="btn btn-primary btn-icon" onclick="editExtension('${ext.id}')">Edit</button>
+                                <button class="btn btn-danger btn-icon" onclick="showDeleteModal('extension', '${ext.id}')">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function updateResultsInfo(count) {
+            const resultsInfo = document.getElementById('resultsInfo');
+            const total = allExtensions.length;
+            const displayed = count !== undefined ? count : total;
+            
+            const t = currentLang === 'ar' ?
+                { showing: 'عرض', of: 'من أصل', extensions: 'تحويلة' } :
+                { showing: 'Showing', of: 'of', extensions: 'extensions' };
+            
+            resultsInfo.textContent = `${t.showing} ${displayed} ${t.of} ${total} ${t.extensions}`;
+        }
+
+        // Login/Logout
+        window.showLoginModal = function() {
+            document.getElementById('loginModal').classList.add('active');
+            document.getElementById('loginForm').reset();
+            document.getElementById('loginError').innerHTML = '';
+        };
+
+        window.closeLoginModal = function() {
+            document.getElementById('loginModal').classList.remove('active');
+        };
+
+        window.handleLogin = async function(event) {
+            event.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            const password = document.getElementById('passwordInput').value;
+            const errorDiv = document.getElementById('loginError');
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                closeLoginModal();
+            } catch (error) {
+                console.error('Login error:', error);
+                errorDiv.innerHTML = `<div class="error-message">Invalid email or password</div>`;
+            }
+            return false;
+        };
+
+        function showAdminPage() {
+            currentLang = 'en'; // Force English for admin
+            document.documentElement.lang = 'en';
+            document.documentElement.dir = 'ltr';
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('adminPage').classList.add('active');
+            if (currentUser) {
+                document.getElementById('adminEmail').textContent = currentUser.email;
+            }
+            updateAdminUILanguage();
+            loadAllData();
+        }
+
+        window.logout = async function() {
+            try {
+                await signOut(auth);
+                document.getElementById('mainPage').style.display = 'block';
+                document.getElementById('adminPage').classList.remove('active');
+                isAdmin = false;
+                currentUser = null;
+                // Restore previous language or default to Arabic
+                currentLang = currentLang || 'ar';
+                document.documentElement.lang = currentLang;
+                document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+                updateUILanguage();
+                loadExtensions();
+            } catch (error) {
+                console.error('Logout error:', error);
+            }
+        };
+
+        // Department CRUD
+        window.openAddDepartmentModal = function() {
+            document.getElementById('editDeptId').value = '';
+            document.getElementById('addDepartmentForm').reset();
+            document.getElementById('addDepartmentModal').classList.add('active');
+        };
+
+        window.closeAddDepartmentModal = function() {
+            document.getElementById('addDepartmentModal').classList.remove('active');
+        };
+
+        window.editDepartment = function(id) {
+            const dept = allDepartments.find(d => d.id === id);
+            if (!dept) return;
+
+            document.getElementById('editDeptId').value = id;
+            document.getElementById('deptArInput').value = dept.name_ar;
+            document.getElementById('deptEnInput').value = dept.name_en;
+            document.getElementById('addDepartmentModal').classList.add('active');
+        };
+
+        window.handleSaveDepartment = async function(event) {
+            event.preventDefault();
+
+            const name_ar = document.getElementById('deptArInput').value;
+            const name_en = document.getElementById('deptEnInput').value;
+            const editId = document.getElementById('editDeptId').value;
+
+            // Disable button and show loading
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Saving...';
+
+            try {
+                if (editId) {
+                    await updateDoc(doc(db, 'departments', editId), {
+                        name_ar, name_en, updatedAt: new Date()
+                    });
+                    
+                    // Update in local array
+                    const index = allDepartments.findIndex(d => d.id === editId);
+                    if (index !== -1) {
+                        allDepartments[index] = { id: editId, name_ar, name_en };
+                    }
+                    
+                    alert('Department updated successfully!');
+                } else {
+                    const docRef = await addDoc(collection(db, 'departments'), {
+                        name_ar, name_en, createdAt: new Date()
+                    });
+                    
+                    // Add to local array
+                    allDepartments.push({ id: docRef.id, name_ar, name_en });
+                    
+                    alert('Department added successfully!');
+                }
+
+                closeAddDepartmentModal();
+                displayDepartments();
+                populateDepartmentSelects();
+            } catch (error) {
+                console.error('Error saving department:', error);
+                alert('Error saving department');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+            return false;
+        };
+
+        // Region CRUD
+        window.openAddRegionModal = function() {
+            document.getElementById('editRegionId').value = '';
+            document.getElementById('addRegionForm').reset();
+            document.getElementById('addRegionModal').classList.add('active');
+        };
+
+        window.closeAddRegionModal = function() {
+            document.getElementById('addRegionModal').classList.remove('active');
+        };
+
+        window.editRegion = function(id) {
+            const region = allRegions.find(r => r.id === id);
+            if (!region) return;
+
+            document.getElementById('editRegionId').value = id;
+            document.getElementById('regionArInput').value = region.name_ar;
+            document.getElementById('regionEnInput').value = region.name_en;
+            document.getElementById('addRegionModal').classList.add('active');
+        };
+
+        window.handleSaveRegion = async function(event) {
+            event.preventDefault();
+
+            const name_ar = document.getElementById('regionArInput').value;
+            const name_en = document.getElementById('regionEnInput').value;
+            const editId = document.getElementById('editRegionId').value;
+
+            // Disable button and show loading
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Saving...';
+
+            try {
+                if (editId) {
+                    await updateDoc(doc(db, 'regions', editId), {
+                        name_ar, name_en, updatedAt: new Date()
+                    });
+                    
+                    // Update in local array
+                    const index = allRegions.findIndex(r => r.id === editId);
+                    if (index !== -1) {
+                        allRegions[index] = { id: editId, name_ar, name_en };
+                    }
+                    
+                    alert('Region updated successfully!');
+                } else {
+                    const docRef = await addDoc(collection(db, 'regions'), {
+                        name_ar, name_en, createdAt: new Date()
+                    });
+                    
+                    // Add to local array
+                    allRegions.push({ id: docRef.id, name_ar, name_en });
+                    
+                    alert('Region added successfully!');
+                }
+
+                closeAddRegionModal();
+                displayRegions();
+                populateRegionSelects();
+            } catch (error) {
+                console.error('Error saving region:', error);
+                alert('Error saving region');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+            return false;
+        };
+
+        // Extension CRUD
+        window.clearFilters = function() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('regionFilter').value = '';
+            document.getElementById('departmentFilter').value = '';
+            filterAndDisplay();
+        };
+
+        window.openAddModal = function() {
+            document.getElementById('editId').value = '';
+            document.getElementById('addForm').reset();
+            document.getElementById('modalTitle').textContent = 'Add New Extension';
+            populateDepartmentSelects();
+            populateRegionSelects();
+            document.getElementById('addModal').classList.add('active');
+        };
+
+        window.closeAddModal = function() {
+            document.getElementById('addModal').classList.remove('active');
+        };
+
+        window.editExtension = function(id) {
+            const ext = allExtensions.find(e => e.id === id);
+            if (!ext) return;
+
+            document.getElementById('editId').value = id;
+            document.getElementById('extensionInput').value = ext.extension;
+            document.getElementById('nameArInput').value = ext.name_ar;
+            document.getElementById('nameEnInput').value = ext.name_en;
+            
+            populateDepartmentSelects();
+            populateRegionSelects();
+            
+            document.getElementById('departmentInput').value = ext.department_id || '';
+            document.getElementById('regionInput').value = ext.region_id || '';
+            
+            document.getElementById('modalTitle').textContent = 'Edit Extension';
+            document.getElementById('addModal').classList.add('active');
+        };
+
+        window.handleSaveExtension = async function(event) {
+            event.preventDefault();
+
+            const extension = document.getElementById('extensionInput').value;
+            const name_ar = document.getElementById('nameArInput').value;
+            const name_en = document.getElementById('nameEnInput').value;
+            const department_id = document.getElementById('departmentInput').value;
+            const region_id = document.getElementById('regionInput').value;
+            const editId = document.getElementById('editId').value;
+
+            // Disable button and show loading
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Saving...';
+
+            try {
+                if (editId) {
+                    await updateDoc(doc(db, 'extensions', editId), {
+                        extension, name_ar, name_en, department_id, region_id, updatedAt: new Date()
+                    });
+                    
+                    // Update in local array
+                    const index = allExtensions.findIndex(e => e.id === editId);
+                    if (index !== -1) {
+                        allExtensions[index] = { id: editId, extension, name_ar, name_en, department_id, region_id };
+                    }
+                    
+                    alert('Extension updated successfully!');
+                } else {
+                    const docRef = await addDoc(collection(db, 'extensions'), {
+                        extension, name_ar, name_en, department_id, region_id, createdAt: new Date()
+                    });
+                    
+                    // Add to local array
+                    allExtensions.push({ id: docRef.id, extension, name_ar, name_en, department_id, region_id });
+                    // Re-sort extensions
+                    allExtensions.sort((a, b) => {
+                        const extA = parseInt(a.extension) || 0;
+                        const extB = parseInt(b.extension) || 0;
+                        return extA - extB;
+                    });
+                    
+                    alert('Extension added successfully!');
+                }
+
+                closeAddModal();
+                filterAndDisplay();
+                if (isAdmin) {
+                    displayAdminExtensions();
+                }
+            } catch (error) {
+                console.error('Error saving extension:', error);
+                alert('Error saving extension');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+            return false;
+        };
+
+        // Delete
+        window.showDeleteModal = function(type, id) {
+            deleteTargetType = type;
+            deleteTargetId = id;
+            document.getElementById('deleteModal').classList.add('active');
+        };
+
+        window.closeDeleteModal = function() {
+            deleteTargetType = null;
+            deleteTargetId = null;
+            document.getElementById('deleteModal').classList.remove('active');
+        };
+
+        window.confirmDelete = async function() {
+            if (!deleteTargetId || !deleteTargetType) return;
+
+            try {
+                const collectionName = deleteTargetType + 's';
+                await deleteDoc(doc(db, collectionName, deleteTargetId));
+                
+                // Remove from local array
+                if (deleteTargetType === 'department') {
+                    allDepartments = allDepartments.filter(d => d.id !== deleteTargetId);
+                    displayDepartments();
+                    populateDepartmentSelects();
+                } else if (deleteTargetType === 'region') {
+                    allRegions = allRegions.filter(r => r.id !== deleteTargetId);
+                    displayRegions();
+                    populateRegionSelects();
+                } else {
+                    allExtensions = allExtensions.filter(e => e.id !== deleteTargetId);
+                    filterAndDisplay();
+                    if (isAdmin) {
+                        displayAdminExtensions();
+                    }
+                }
+                
+                alert('Deleted successfully!');
+                closeDeleteModal();
+            } catch (error) {
+                console.error('Error deleting:', error);
+                alert('Error deleting');
+            }
+        };
+
+        // Bulk Import
+        window.downloadTemplate = function() {
+            const wb = XLSX.utils.book_new();
+            const wsData = [
+                ['extension', 'name_ar', 'name_en', 'department', 'region'],
+                ['101', 'أحمد محمد', 'Ahmed Mohammed', 'IT', 'الرياض'],
+                ['102', 'فاطمة علي', 'Fatima Ali', 'HR', 'Jeddah'],
+                ['103', 'خالد عبدالله', 'Khalid Abdullah', 'Finance', 'Riyadh']
+            ];
+            const ws = XLSX.utils.aoa_to_sheet(wsData);
+            XLSX.utils.book_append_sheet(wb, ws, 'Extensions');
+            XLSX.writeFile(wb, 'DarWaEmaar_Extensions_Template.xlsx');
+        };
+
+        window.openBulkImportModal = function() {
+            document.getElementById('bulkImportModal').classList.add('active');
+            document.getElementById('importPreview').innerHTML = '';
+            document.getElementById('importMessage').innerHTML = '';
+            document.getElementById('importConfirmBtn').style.display = 'none';
+            document.getElementById('bulkImportFile').value = '';
+            importData = [];
+        };
+
+        window.closeBulkImportModal = function() {
+            document.getElementById('bulkImportModal').classList.remove('active');
+        };
+
+        window.handleImportFile = function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const fileExtension = file.name.split('.').pop().toLowerCase();
+
+            if (fileExtension === 'csv') {
+                Papa.parse(file, {
+                    header: true,
+                    complete: function(results) {
+                        processImportData(results.data);
+                    }
+                });
+            } else if (['xls', 'xlsx'].includes(fileExtension)) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+                    processImportData(jsonData);
+                };
+                reader.readAsArrayBuffer(file);
+            }
+        };
+
+        function processImportData(data) {
+            importData = data.filter(row => row.extension && row.name_ar && row.name_en);
+            
+            if (importData.length === 0) {
+                document.getElementById('importMessage').innerHTML = 
+                    `<div class="error-message">No valid data found</div>`;
+                return;
+            }
+
+            const previewHtml = `
+                <div class="preview-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Extension</th>
+                                <th>Name (Arabic)</th>
+                                <th>Name (English)</th>
+                                <th>Department</th>
+                                <th>Region</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${importData.slice(0, 10).map(row => {
+                                const deptId = getDepartmentIdByName(row.department);
+                                const regionId = getRegionIdByName(row.region);
+                                const dept = deptId ? getDisplayDepartment(deptId) : '-';
+                                const region = regionId ? getDisplayRegion(regionId) : '-';
+                                return `
+                                <tr>
+                                    <td>${row.extension}</td>
+                                    <td>${row.name_ar}</td>
+                                    <td>${row.name_en}</td>
+                                    <td>${dept}</td>
+                                    <td>${region}</td>
+                                </tr>
+                                `;
+                            }).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+
+            document.getElementById('importPreview').innerHTML = previewHtml;
+            document.getElementById('importMessage').innerHTML = 
+                `<div class="success-message">Found ${importData.length} records</div>`;
+            document.getElementById('importConfirmBtn').style.display = 'block';
+        }
+
+        window.confirmBulkImport = async function() {
+            if (importData.length === 0) return;
+
+            // Disable button
+            const confirmBtn = document.getElementById('importConfirmBtn');
+            confirmBtn.disabled = true;
+            confirmBtn.textContent = 'Importing...';
+
+            try {
+                let successCount = 0;
+                for (const row of importData) {
+                    const department_id = getDepartmentIdByName(row.department);
+                    const region_id = getRegionIdByName(row.region);
+                    
+                    const docRef = await addDoc(collection(db, 'extensions'), {
+                        extension: row.extension,
+                        name_ar: row.name_ar,
+                        name_en: row.name_en,
+                        department_id: department_id || '',
+                        region_id: region_id || '',
+                        createdAt: new Date()
+                    });
+                    
+                    // Add to local array
+                    allExtensions.push({
+                        id: docRef.id,
+                        extension: row.extension,
+                        name_ar: row.name_ar,
+                        name_en: row.name_en,
+                        department_id: department_id || '',
+                        region_id: region_id || ''
+                    });
+                    
+                    successCount++;
+                }
+
+                // Re-sort extensions
+                allExtensions.sort((a, b) => {
+                    const extA = parseInt(a.extension) || 0;
+                    const extB = parseInt(b.extension) || 0;
+                    return extA - extB;
+                });
+
+                alert(`Successfully imported ${successCount} extensions!`);
+                
+                closeBulkImportModal();
+                filterAndDisplay();
+                if (isAdmin) {
+                    displayAdminExtensions();
+                }
+            } catch (error) {
+                console.error('Error importing:', error);
+                alert('Error during import');
+            } finally {
+                confirmBtn.disabled = false;
+                confirmBtn.textContent = 'Confirm Import';
+            }
+        };
+
+        // Bulk Update
+        window.openBulkUpdateModal = function() {
+            document.getElementById('bulkUpdateModal').classList.add('active');
+            document.getElementById('updatePreview').innerHTML = '';
+            document.getElementById('updateMessage').innerHTML = '';
+            document.getElementById('updateConfirmBtn').style.display = 'none';
+            document.getElementById('bulkUpdateFile').value = '';
+            updateData = [];
+        };
+
+        window.closeBulkUpdateModal = function() {
+            document.getElementById('bulkUpdateModal').classList.remove('active');
+        };
+
+        window.handleUpdateFile = function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const fileExtension = file.name.split('.').pop().toLowerCase();
+
+            if (fileExtension === 'csv') {
+                Papa.parse(file, {
+                    header: true,
+                    complete: function(results) {
+                        processUpdateData(results.data);
+                    }
+                });
+            } else if (['xls', 'xlsx'].includes(fileExtension)) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+                    processUpdateData(jsonData);
+                };
+                reader.readAsArrayBuffer(file);
+            }
+        };
+
+        function processUpdateData(data) {
+            updateData = data.filter(row => row.extension);
+            
+            if (updateData.length === 0) {
+                document.getElementById('updateMessage').innerHTML = 
+                    `<div class="error-message">No valid data found</div>`;
+                return;
+            }
+
+            const previewHtml = `
+                <div class="preview-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Extension</th>
+                                <th>Name (Arabic)</th>
+                                <th>Name (English)</th>
+                                <th>Department</th>
+                                <th>Region</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${updateData.slice(0, 10).map(row => {
+                                const deptId = row.department ? getDepartmentIdByName(row.department) : null;
+                                const regionId = row.region ? getRegionIdByName(row.region) : null;
+                                const dept = deptId ? getDisplayDepartment(deptId) : '-';
+                                const region = regionId ? getDisplayRegion(regionId) : '-';
+                                return `
+                                <tr>
+                                    <td>${row.extension}</td>
+                                    <td>${row.name_ar || '-'}</td>
+                                    <td>${row.name_en || '-'}</td>
+                                    <td>${dept}</td>
+                                    <td>${region}</td>
+                                </tr>
+                                `;
+                            }).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+
+            document.getElementById('updatePreview').innerHTML = previewHtml;
+            document.getElementById('updateMessage').innerHTML = 
+                `<div class="success-message">Found ${updateData.length} records to update</div>`;
+            document.getElementById('updateConfirmBtn').style.display = 'block';
+        }
+
+        window.confirmBulkUpdate = async function() {
+            if (updateData.length === 0) return;
+
+            // Disable button
+            const confirmBtn = document.getElementById('updateConfirmBtn');
+            confirmBtn.disabled = true;
+            confirmBtn.textContent = 'Updating...';
+
+            try {
+                let successCount = 0;
+                for (const row of updateData) {
+                    const q = query(collection(db, 'extensions'), where('extension', '==', row.extension));
+                    const querySnapshot = await getDocs(q);
+                    
+                    if (!querySnapshot.empty) {
+                        const docRef = querySnapshot.docs[0].ref;
+                        const updateFields = { updatedAt: new Date() };
+                        
+                        if (row.name_ar) updateFields.name_ar = row.name_ar;
+                        if (row.name_en) updateFields.name_en = row.name_en;
+                        if (row.department) {
+                            const deptId = getDepartmentIdByName(row.department);
+                            if (deptId) updateFields.department_id = deptId;
+                        }
+                        if (row.region) {
+                            const regionId = getRegionIdByName(row.region);
+                            if (regionId) updateFields.region_id = regionId;
+                        }
+                        
+                        await updateDoc(docRef, updateFields);
+                        
+                        // Update in local array
+                        const index = allExtensions.findIndex(e => e.id === docRef.id);
+                        if (index !== -1) {
+                            allExtensions[index] = { ...allExtensions[index], ...updateFields };
+                        }
+                        
+                        successCount++;
+                    }
+                }
+
+                alert(`Successfully updated ${successCount} extensions!`);
+                
+                closeBulkUpdateModal();
+                filterAndDisplay();
+                if (isAdmin) {
+                    displayAdminExtensions();
+                }
+            } catch (error) {
+                console.error('Error updating:', error);
+                alert('Error during update');
+            } finally {
+                confirmBtn.disabled = false;
+                confirmBtn.textContent = 'Confirm Update';
+            }
+        };
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', filterAndDisplay);
+        document.getElementById('regionFilter').addEventListener('change', filterAndDisplay);
+        document.getElementById('departmentFilter').addEventListener('change', filterAndDisplay);
+
+        // Initialize
+        updateUILanguage();
+        loadAllData();
+    </script>
+</body>
+</html>
