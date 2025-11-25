@@ -4,6 +4,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>دليل التحويلات - Dar Wa Emaar Extensions</title>
     <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #fff5f0;
+            --bg-gradient-start: #fff5f0;
+            --bg-gradient-end: #ffe8dc;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border-color: #e8e8e8;
+            --border-color-hover: #ffb89a;
+            --shadow-sm: rgba(0, 0, 0, 0.04);
+            --shadow-md: rgba(0, 0, 0, 0.1);
+            --shadow-lg: rgba(243, 111, 42, 0.15);
+            --table-hover: #fff5f0;
+            --input-bg: #ffffff;
+            --modal-overlay: rgba(0, 0, 0, 0.5);
+            --scrollbar-track: #f1f1f1;
+            --scrollbar-thumb: #F36F2a;
+            --scrollbar-thumb-hover: #d45e22;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --bg-gradient-start: #1a1a1a;
+            --bg-gradient-end: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --text-muted: #808080;
+            --border-color: #404040;
+            --border-color-hover: #F36F2a;
+            --shadow-sm: rgba(0, 0, 0, 0.3);
+            --shadow-md: rgba(0, 0, 0, 0.5);
+            --shadow-lg: rgba(243, 111, 42, 0.25);
+            --table-hover: #2d2d2d;
+            --input-bg: #2d2d2d;
+            --modal-overlay: rgba(0, 0, 0, 0.8);
+            --scrollbar-track: #2d2d2d;
+            --scrollbar-thumb: #F36F2a;
+            --scrollbar-thumb-hover: #ff8c52;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,18 +54,20 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #fff5f0 0%, #ffe8dc 100%);
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
             min-height: 100vh;
             padding: 20px;
+            transition: background 0.3s ease;
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            background: white;
+            background: var(--bg-primary);
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(243, 111, 42, 0.15);
+            box-shadow: 0 10px 40px var(--shadow-lg);
             overflow: hidden;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
         }
 
         .header {
@@ -65,6 +109,29 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            left: 120px;
+            background: white;
+            color: #F36F2a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
         .admin-access {
             position: absolute;
             top: 20px;
@@ -89,8 +156,9 @@
 
         .controls {
             padding: 30px;
-            background: #fff5f0;
+            background: var(--bg-secondary);
             border-bottom: 3px solid #F36F2a;
+            transition: background 0.3s ease;
         }
 
         .controls-grid {
@@ -115,12 +183,13 @@
         .control-group input,
         .control-group select {
             padding: 12px 15px;
-            border: 2px solid #e8e8e8;
+            border: 2px solid var(--border-color);
             border-radius: 12px;
             font-size: 1rem;
             transition: all 0.3s;
-            background: white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            background: var(--input-bg);
+            color: var(--text-primary);
+            box-shadow: 0 2px 8px var(--shadow-sm);
         }
 
         .control-group select {
@@ -149,14 +218,14 @@
         }
 
         .control-group input:hover {
-            border-color: #ffb89a;
+            border-color: var(--border-color-hover);
             box-shadow: 0 4px 12px rgba(243, 111, 42, 0.1);
         }
 
         .control-group select option {
             padding: 12px 15px;
-            background: white;
-            color: #333;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             font-size: 1rem;
             border-radius: 8px;
             margin: 4px;
@@ -165,13 +234,13 @@
         .control-group select option:hover,
         .control-group select option:checked,
         .control-group select option:focus {
-            background: linear-gradient(135deg, #fff5f0 0%, #ffe8dc 100%);
+            background: var(--bg-secondary);
             color: #F36F2a;
             font-weight: 600;
         }
 
         .control-group select option:first-child {
-            color: #999;
+            color: var(--text-muted);
             font-style: italic;
         }
 
@@ -187,12 +256,13 @@
         .select-selected {
             padding: 12px 15px;
             padding-right: 40px;
-            border: 2px solid #e8e8e8;
+            border: 2px solid var(--border-color);
             border-radius: 12px;
-            background: white;
+            background: var(--input-bg);
+            color: var(--text-primary);
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 2px 8px var(--shadow-sm);
             position: relative;
             user-select: none;
         }
@@ -226,9 +296,9 @@
             left: 0;
             right: 0;
             z-index: 99;
-            background: white;
+            background: var(--bg-primary);
             border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 8px 24px var(--shadow-md);
             max-height: 300px;
             overflow-y: auto;
             opacity: 0;
@@ -248,11 +318,12 @@
             cursor: pointer;
             transition: all 0.2s;
             border-left: 3px solid transparent;
+            color: var(--text-primary);
         }
 
         .select-items div:first-child {
             border-radius: 12px 12px 0 0;
-            color: #999;
+            color: var(--text-muted);
             font-style: italic;
         }
 
@@ -261,13 +332,13 @@
         }
 
         .select-items div:hover {
-            background: linear-gradient(135deg, #fff5f0 0%, #ffe8dc 100%);
+            background: var(--bg-secondary);
             border-left-color: #F36F2a;
             padding-left: 18px;
         }
 
         .select-items div.same-as-selected {
-            background: linear-gradient(135deg, #fff5f0 0%, #ffe8dc 100%);
+            background: var(--bg-secondary);
             color: #F36F2a;
             font-weight: 600;
             border-left-color: #F36F2a;
@@ -278,17 +349,17 @@
         }
 
         .select-items::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: var(--scrollbar-track);
             border-radius: 12px;
         }
 
         .select-items::-webkit-scrollbar-thumb {
-            background: #F36F2a;
+            background: var(--scrollbar-thumb);
             border-radius: 12px;
         }
 
         .select-items::-webkit-scrollbar-thumb:hover {
-            background: #d45e22;
+            background: var(--scrollbar-thumb-hover);
         }
 
         .action-buttons {
@@ -375,11 +446,12 @@
 
         .results-info {
             padding: 20px 30px;
-            background: #fff5f0;
+            background: var(--bg-secondary);
             border-left: 5px solid #F36F2a;
             margin: 0;
             font-weight: bold;
             color: #F36F2a;
+            transition: background 0.3s ease;
         }
 
         .table-container {
@@ -390,10 +462,11 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            background: white;
+            background: var(--bg-primary);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px var(--shadow-sm);
+            transition: background 0.3s ease;
         }
 
         thead {
@@ -409,19 +482,20 @@
         }
 
         tbody tr {
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--border-color);
             transition: all 0.3s;
         }
 
         tbody tr:hover {
-            background: #fff5f0;
+            background: var(--table-hover);
             transform: scale(1.01);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px var(--shadow-md);
         }
 
         td {
             padding: 18px;
             text-align: center;
+            color: var(--text-primary);
         }
 
         .extension-cell {
@@ -431,19 +505,19 @@
         }
 
         .name-cell {
-            color: #333;
+            color: var(--text-primary);
             font-weight: 600;
         }
 
         .department-cell {
-            color: #666;
+            color: var(--text-secondary);
         }
 
         .region-cell {
             display: inline-block;
             padding: 6px 15px;
             border-radius: 20px;
-            background: #fff5f0;
+            background: var(--bg-secondary);
             color: #F36F2a;
             font-weight: bold;
             font-size: 0.9rem;
@@ -458,7 +532,7 @@
         .empty-state {
             text-align: center;
             padding: 60px 20px;
-            color: #999;
+            color: var(--text-muted);
         }
 
         .empty-state svg {
@@ -480,7 +554,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: var(--modal-overlay);
             z-index: 1000;
             align-items: center;
             justify-content: center;
@@ -491,7 +565,7 @@
         }
 
         .modal-content {
-            background: white;
+            background: var(--bg-primary);
             padding: 40px;
             border-radius: 20px;
             max-width: 500px;
@@ -499,6 +573,7 @@
             max-height: 90vh;
             overflow-y: auto;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transition: background 0.3s ease;
         }
 
         .modal-content.large {
@@ -531,9 +606,12 @@
         .form-group select {
             width: 100%;
             padding: 12px;
-            border: 2px solid #ddd;
+            border: 2px solid var(--border-color);
             border-radius: 10px;
             font-size: 1rem;
+            background: var(--input-bg);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
         }
 
         .form-group input:focus,
@@ -616,10 +694,11 @@
         }
 
         .settings-card {
-            background: #fff5f0;
+            background: var(--bg-secondary);
             padding: 25px;
             border-radius: 15px;
             border: 2px solid #F36F2a;
+            transition: background 0.3s ease;
         }
 
         .settings-card h3 {
@@ -636,13 +715,14 @@
         }
 
         .settings-item {
-            background: white;
+            background: var(--bg-primary);
             padding: 12px;
             margin-bottom: 10px;
             border-radius: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: background 0.3s ease;
         }
 
         .settings-item-text {
@@ -651,12 +731,12 @@
 
         .settings-item-label {
             font-weight: bold;
-            color: #333;
+            color: var(--text-primary);
         }
 
         .settings-item-sublabel {
             font-size: 0.85rem;
-            color: #666;
+            color: var(--text-secondary);
         }
 
         .stats-number {
@@ -691,17 +771,31 @@
             margin-bottom: 20px;
         }
 
+        [data-theme="dark"] .info-box {
+            background: #1e3a1e;
+            border-color: #4caf50;
+        }
+
         .info-box h3 {
             color: #2e7d32;
             margin-bottom: 10px;
         }
 
+        [data-theme="dark"] .info-box h3 {
+            color: #81c784;
+        }
+
         .info-box pre {
-            background: white;
+            background: var(--bg-primary);
             padding: 15px;
             border-radius: 8px;
             overflow-x: auto;
             font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .info-box p {
+            color: var(--text-primary);
         }
 
         .file-upload-area {
@@ -709,13 +803,13 @@
             border-radius: 15px;
             padding: 30px;
             text-align: center;
-            background: #fff5f0;
+            background: var(--bg-secondary);
             cursor: pointer;
             transition: all 0.3s;
         }
 
         .file-upload-area:hover {
-            background: #ffe8dc;
+            background: var(--table-hover);
             border-color: #d45e22;
         }
 
@@ -727,6 +821,10 @@
             font-size: 3rem;
             color: #F36F2a;
             margin-bottom: 15px;
+        }
+
+        .file-upload-area p {
+            color: var(--text-primary);
         }
 
         .preview-table {
@@ -757,13 +855,14 @@
             }
 
             .lang-switch,
+            .theme-toggle,
             .admin-access {
                 position: static;
                 margin: 10px;
             }
 
             .header {
-                padding-top: 60px;
+                padding-top: 120px;
             }
 
             .admin-header {
@@ -783,6 +882,10 @@
         <div class="container">
             <div class="header">
                 <button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
+                <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">
+                    <span id="themeIcon">🌙</span>
+                    <span id="themeText">Dark</span>
+                </button>
                 <button class="admin-access" onclick="showLoginModal()" id="adminBtn">صفحة الإدارة</button>
                 <h1 id="mainTitle">دليل التحويلات الداخلية</h1>
                 <p id="mainSubtitle">Dar Wa Emaar Internal Extensions Directory</p>
@@ -846,6 +949,10 @@
             <div class="admin-header">
                 <h2 id="adminTitle">Admin Dashboard</h2>
                 <div class="admin-info">
+                    <button class="theme-toggle" onclick="toggleTheme()" style="position: static; margin: 0;">
+                        <span id="adminThemeIcon">🌙</span>
+                        <span id="adminThemeText">Dark</span>
+                    </button>
                     <span class="admin-email" id="adminEmail"></span>
                     <button class="btn btn-secondary" onclick="logout()" id="logoutBtn">Logout</button>
                 </div>
@@ -1046,7 +1153,7 @@
                 <pre>extension,name_ar,name_en,job_title_ar,job_title_en,department,region
 101,أحمد محمد,Ahmed Mohammed,مدير IT,IT Manager,IT,الرياض
 102,فاطمة علي,Fatima Ali,موظفة HR,HR Officer,HR,Riyadh</pre>
-                <p style="margin-top: 10px; color: #2e7d32;"><strong>Note:</strong> Job titles are optional. You can use Arabic or English names for departments and regions</p>
+                <p style="margin-top: 10px;"><strong>Note:</strong> Job titles are optional. You can use Arabic or English names for departments and regions</p>
                 <div style="margin-top: 15px;">
                     <button class="btn btn-warning" onclick="downloadTemplate()">📥 Download Excel Template</button>
                 </div>
@@ -1110,7 +1217,7 @@
             <div class="modal-header">
                 <h2>Confirm Deletion</h2>
             </div>
-            <p id="deleteMessage" style="margin: 20px 0; font-size: 1.1rem;">Are you sure you want to delete this item?</p>
+            <p id="deleteMessage" style="margin: 20px 0; font-size: 1.1rem; color: var(--text-primary);">Are you sure you want to delete this item?</p>
             <div class="modal-actions">
                 <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
                 <button class="btn btn-secondary" onclick="closeDeleteModal()">Cancel</button>
@@ -1149,6 +1256,44 @@
         let currentUser = null;
         let importData = [];
         let updateData = [];
+
+        // Theme Management
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeButton(savedTheme);
+        }
+
+        function updateThemeButton(theme) {
+            const isDark = theme === 'dark';
+            
+            // Main page theme button
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+            if (themeIcon && themeText) {
+                themeIcon.textContent = isDark ? '☀️' : '🌙';
+                themeText.textContent = isDark ? 
+                    (currentLang === 'ar' ? 'فاتح' : 'Light') : 
+                    (currentLang === 'ar' ? 'داكن' : 'Dark');
+            }
+
+            // Admin page theme button
+            const adminThemeIcon = document.getElementById('adminThemeIcon');
+            const adminThemeText = document.getElementById('adminThemeText');
+            if (adminThemeIcon && adminThemeText) {
+                adminThemeIcon.textContent = isDark ? '☀️' : '🌙';
+                adminThemeText.textContent = isDark ? 'Light' : 'Dark';
+            }
+        }
+
+        window.toggleTheme = function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeButton(newTheme);
+        };
 
         // Auth state
         onAuthStateChanged(auth, (user) => {
@@ -1236,6 +1381,10 @@
             document.getElementById('thJobTitle').textContent = t.thJobTitle;
             document.getElementById('thDepartment').textContent = t.thDepartment;
             document.getElementById('thRegion').textContent = t.thRegion;
+
+            // Update theme button text
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            updateThemeButton(currentTheme);
         }
 
         function updateAdminUILanguage() {
@@ -1287,7 +1436,6 @@
         // Load data with parallel execution and no orderBy (faster)
         async function loadDepartments() {
             try {
-                // Remove orderBy for faster loading, sort client-side instead
                 const querySnapshot = await getDocs(collection(db, 'departments'));
                 
                 allDepartments = [];
@@ -1295,7 +1443,6 @@
                     allDepartments.push({ id: doc.id, ...doc.data() });
                 });
 
-                // Sort client-side (much faster than Firebase orderBy without index)
                 allDepartments.sort((a, b) => {
                     return a.name_ar.localeCompare(b.name_ar, 'ar');
                 });
@@ -1312,7 +1459,6 @@
 
         async function loadRegions() {
             try {
-                // Remove orderBy for faster loading, sort client-side instead
                 const querySnapshot = await getDocs(collection(db, 'regions'));
                 
                 allRegions = [];
@@ -1320,7 +1466,6 @@
                     allRegions.push({ id: doc.id, ...doc.data() });
                 });
 
-                // Sort client-side (much faster than Firebase orderBy without index)
                 allRegions.sort((a, b) => {
                     return a.name_ar.localeCompare(b.name_ar, 'ar');
                 });
@@ -1337,7 +1482,6 @@
 
         async function loadExtensions() {
             try {
-                // Remove orderBy for faster loading, sort client-side instead
                 const querySnapshot = await getDocs(collection(db, 'extensions'));
                 
                 allExtensions = [];
@@ -1345,7 +1489,6 @@
                     allExtensions.push({ id: doc.id, ...doc.data() });
                 });
 
-                // Sort client-side by extension number
                 allExtensions.sort((a, b) => {
                     const extA = parseInt(a.extension) || 0;
                     const extB = parseInt(b.extension) || 0;
@@ -1370,10 +1513,8 @@
             }
         }
 
-        // Load all data in parallel
         async function loadAllData() {
             try {
-                // Load all collections in parallel for better performance
                 await Promise.all([
                     loadDepartments(),
                     loadRegions(),
@@ -1389,7 +1530,7 @@
         function displayDepartments() {
             const container = document.getElementById('departmentsList');
             if (allDepartments.length === 0) {
-                container.innerHTML = `<p style="color: #999; text-align: center; padding: 20px;">No departments</p>`;
+                container.innerHTML = `<p style="color: var(--text-muted); text-align: center; padding: 20px;">No departments</p>`;
                 return;
             }
 
@@ -1412,7 +1553,7 @@
         function displayRegions() {
             const container = document.getElementById('regionsList');
             if (allRegions.length === 0) {
-                container.innerHTML = `<p style="color: #999; text-align: center; padding: 20px;">No regions</p>`;
+                container.innerHTML = `<p style="color: var(--text-muted); text-align: center; padding: 20px;">No regions</p>`;
                 return;
             }
 
@@ -1441,36 +1582,29 @@
                 const isFilter = select.id === 'departmentFilter';
                 const currentValue = select.value;
                 
-                // Clear and add default option
                 select.innerHTML = '';
                 const defaultOption = document.createElement('option');
                 defaultOption.value = '';
                 
                 if (isAdmin) {
-                    // Admin page always in English
                     defaultOption.textContent = isFilter ? 'All Departments' : 'Select Department';
                 } else {
-                    // Public page respects language setting
                     defaultOption.textContent = isFilter ? 
                         (currentLang === 'ar' ? 'جميع الأقسام' : 'All Departments') :
                         (currentLang === 'ar' ? 'اختر القسم' : 'Select Department');
                 }
                 select.appendChild(defaultOption);
                 
-                // Add department options
                 allDepartments.forEach(dept => {
                     const option = document.createElement('option');
                     option.value = dept.id;
-                    // Admin shows English, public respects language setting
                     option.textContent = isAdmin ? dept.name_en : (currentLang === 'ar' ? dept.name_ar : dept.name_en);
                     select.appendChild(option);
                 });
                 
-                // Restore previous selection if it exists
                 if (currentValue) select.value = currentValue;
             });
 
-            // Update custom selects display
             setTimeout(updateCustomSelects, 100);
         }
 
@@ -1483,36 +1617,29 @@
                 const isFilter = select.id === 'regionFilter';
                 const currentValue = select.value;
                 
-                // Clear and add default option
                 select.innerHTML = '';
                 const defaultOption = document.createElement('option');
                 defaultOption.value = '';
                 
                 if (isAdmin) {
-                    // Admin page always in English
                     defaultOption.textContent = isFilter ? 'All Regions' : 'Select Region';
                 } else {
-                    // Public page respects language setting
                     defaultOption.textContent = isFilter ? 
                         (currentLang === 'ar' ? 'جميع المناطق' : 'All Regions') :
                         (currentLang === 'ar' ? 'اختر المنطقة' : 'Select Region');
                 }
                 select.appendChild(defaultOption);
                 
-                // Add region options
                 allRegions.forEach(region => {
                     const option = document.createElement('option');
                     option.value = region.id;
-                    // Admin shows English, public respects language setting
                     option.textContent = isAdmin ? region.name_en : (currentLang === 'ar' ? region.name_ar : region.name_en);
                     select.appendChild(option);
                 });
                 
-                // Restore previous selection if it exists
                 if (currentValue) select.value = currentValue;
             });
 
-            // Update custom selects display
             setTimeout(updateCustomSelects, 100);
         }
 
@@ -1626,7 +1753,6 @@
 
         // Analytics
         function displayAnalytics() {
-            // Department statistics
             const deptStats = {};
             allExtensions.forEach(ext => {
                 const deptId = ext.department_id || 'unassigned';
@@ -1647,9 +1773,8 @@
                         </div>
                     `;
                 }).join('');
-            deptStatsContainer.innerHTML = deptStatsHtml || '<p style="color: #999; text-align: center; padding: 20px;">No data</p>';
+            deptStatsContainer.innerHTML = deptStatsHtml || '<p style="color: var(--text-muted); text-align: center; padding: 20px;">No data</p>';
 
-            // Region statistics
             const regionStats = {};
             allExtensions.forEach(ext => {
                 const regionId = ext.region_id || 'unassigned';
@@ -1670,7 +1795,7 @@
                         </div>
                     `;
                 }).join('');
-            regionStatsContainer.innerHTML = regionStatsHtml || '<p style="color: #999; text-align: center; padding: 20px;">No data</p>';
+            regionStatsContainer.innerHTML = regionStatsHtml || '<p style="color: var(--text-muted); text-align: center; padding: 20px;">No data</p>';
         }
 
         // Login/Logout
@@ -1701,7 +1826,7 @@
         };
 
         function showAdminPage() {
-            currentLang = 'en'; // Force English for admin
+            currentLang = 'en';
             document.documentElement.lang = 'en';
             document.documentElement.dir = 'ltr';
             document.getElementById('mainPage').style.display = 'none';
@@ -1720,7 +1845,6 @@
                 document.getElementById('adminPage').classList.remove('active');
                 isAdmin = false;
                 currentUser = null;
-                // Restore previous language or default to Arabic
                 currentLang = currentLang || 'ar';
                 document.documentElement.lang = currentLang;
                 document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
@@ -1759,7 +1883,6 @@
             const name_en = document.getElementById('deptEnInput').value;
             const editId = document.getElementById('editDeptId').value;
 
-            // Disable button and show loading
             const submitBtn = event.target.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
             submitBtn.disabled = true;
@@ -1771,7 +1894,6 @@
                         name_ar, name_en, updatedAt: new Date()
                     });
                     
-                    // Update in local array
                     const index = allDepartments.findIndex(d => d.id === editId);
                     if (index !== -1) {
                         allDepartments[index] = { id: editId, name_ar, name_en };
@@ -1783,7 +1905,6 @@
                         name_ar, name_en, createdAt: new Date()
                     });
                     
-                    // Add to local array
                     allDepartments.push({ id: docRef.id, name_ar, name_en });
                     
                     alert('Department added successfully!');
@@ -1830,7 +1951,6 @@
             const name_en = document.getElementById('regionEnInput').value;
             const editId = document.getElementById('editRegionId').value;
 
-            // Disable button and show loading
             const submitBtn = event.target.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
             submitBtn.disabled = true;
@@ -1842,7 +1962,6 @@
                         name_ar, name_en, updatedAt: new Date()
                     });
                     
-                    // Update in local array
                     const index = allRegions.findIndex(r => r.id === editId);
                     if (index !== -1) {
                         allRegions[index] = { id: editId, name_ar, name_en };
@@ -1854,7 +1973,6 @@
                         name_ar, name_en, createdAt: new Date()
                     });
                     
-                    // Add to local array
                     allRegions.push({ id: docRef.id, name_ar, name_en });
                     
                     alert('Region added successfully!');
@@ -1879,7 +1997,6 @@
             document.getElementById('regionFilter').value = '';
             document.getElementById('departmentFilter').value = '';
             
-            // Update custom select displays
             setTimeout(() => {
                 document.querySelectorAll('.custom-select').forEach(wrapper => {
                     const select = wrapper.querySelector('select');
@@ -1887,7 +2004,6 @@
                     if (select && selectedDiv && select.selectedIndex >= 0) {
                         selectedDiv.textContent = select.options[select.selectedIndex].text;
                         
-                        // Update selected class in items
                         const items = wrapper.querySelectorAll('.select-items div');
                         items.forEach((item, index) => {
                             item.classList.toggle('same-as-selected', index === select.selectedIndex);
@@ -1945,7 +2061,6 @@
             const region_id = document.getElementById('regionInput').value;
             const editId = document.getElementById('editId').value;
 
-            // Disable button and show loading
             const submitBtn = event.target.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
             submitBtn.disabled = true;
@@ -1957,7 +2072,6 @@
                         extension, name_ar, name_en, job_title_ar, job_title_en, department_id, region_id, updatedAt: new Date()
                     });
                     
-                    // Update in local array
                     const index = allExtensions.findIndex(e => e.id === editId);
                     if (index !== -1) {
                         allExtensions[index] = { id: editId, extension, name_ar, name_en, job_title_ar, job_title_en, department_id, region_id };
@@ -1969,9 +2083,7 @@
                         extension, name_ar, name_en, job_title_ar, job_title_en, department_id, region_id, createdAt: new Date()
                     });
                     
-                    // Add to local array
                     allExtensions.push({ id: docRef.id, extension, name_ar, name_en, job_title_ar, job_title_en, department_id, region_id });
-                    // Re-sort extensions
                     allExtensions.sort((a, b) => {
                         const extA = parseInt(a.extension) || 0;
                         const extB = parseInt(b.extension) || 0;
@@ -2017,7 +2129,6 @@
                 const collectionName = deleteTargetType + 's';
                 await deleteDoc(doc(db, collectionName, deleteTargetId));
                 
-                // Remove from local array
                 if (deleteTargetType === 'department') {
                     allDepartments = allDepartments.filter(d => d.id !== deleteTargetId);
                     displayDepartments();
@@ -2150,7 +2261,6 @@
         window.confirmBulkImport = async function() {
             if (importData.length === 0) return;
 
-            // Disable button
             const confirmBtn = document.getElementById('importConfirmBtn');
             confirmBtn.disabled = true;
             confirmBtn.textContent = 'Importing...';
@@ -2172,7 +2282,6 @@
                         createdAt: new Date()
                     });
                     
-                    // Add to local array
                     allExtensions.push({
                         id: docRef.id,
                         extension: row.extension,
@@ -2187,7 +2296,6 @@
                     successCount++;
                 }
 
-                // Re-sort extensions
                 allExtensions.sort((a, b) => {
                     const extA = parseInt(a.extension) || 0;
                     const extB = parseInt(b.extension) || 0;
@@ -2305,7 +2413,6 @@
         window.confirmBulkUpdate = async function() {
             if (updateData.length === 0) return;
 
-            // Disable button
             const confirmBtn = document.getElementById('updateConfirmBtn');
             confirmBtn.disabled = true;
             confirmBtn.textContent = 'Updating...';
@@ -2335,7 +2442,6 @@
                         
                         await updateDoc(docRef, updateFields);
                         
-                        // Update in local array
                         const index = allExtensions.findIndex(e => e.id === docRef.id);
                         if (index !== -1) {
                             allExtensions[index] = { ...allExtensions[index], ...updateFields };
@@ -2368,6 +2474,7 @@
         document.getElementById('departmentFilter').addEventListener('change', filterAndDisplay);
 
         // Initialize
+        initTheme();
         updateUILanguage();
         loadAllData();
 
@@ -2376,29 +2483,24 @@
             const selects = document.querySelectorAll('.control-group select');
             
             selects.forEach(selectElement => {
-                // Skip if already initialized or if it's in admin modal
                 if (selectElement.parentElement.classList.contains('custom-select') || 
                     selectElement.closest('.modal')) {
                     return;
                 }
 
-                // Wrap select in custom container
                 const wrapper = document.createElement('div');
                 wrapper.className = 'custom-select';
                 selectElement.parentNode.insertBefore(wrapper, selectElement);
                 wrapper.appendChild(selectElement);
 
-                // Create custom selected display
                 const selectedDiv = document.createElement('div');
                 selectedDiv.className = 'select-selected';
                 selectedDiv.textContent = selectElement.options[selectElement.selectedIndex].text;
                 wrapper.appendChild(selectedDiv);
 
-                // Create items container
                 const itemsDiv = document.createElement('div');
                 itemsDiv.className = 'select-items';
 
-                // Add all options
                 for (let i = 0; i < selectElement.options.length; i++) {
                     const optionDiv = document.createElement('div');
                     optionDiv.textContent = selectElement.options[i].text;
@@ -2409,24 +2511,20 @@
                     }
 
                     optionDiv.addEventListener('click', function(e) {
-                        // Update select value
                         const select = this.closest('.custom-select').querySelector('select');
                         const selectedDisplay = this.closest('.custom-select').querySelector('.select-selected');
                         
                         select.value = this.dataset.value;
                         selectedDisplay.textContent = this.textContent;
 
-                        // Update selected class
                         this.parentElement.querySelectorAll('div').forEach(div => {
                             div.classList.remove('same-as-selected');
                         });
                         this.classList.add('same-as-selected');
 
-                        // Close dropdown
                         selectedDisplay.classList.remove('select-arrow-active');
                         this.parentElement.classList.remove('show');
 
-                        // Trigger change event
                         select.dispatchEvent(new Event('change'));
                     });
 
@@ -2435,11 +2533,9 @@
 
                 wrapper.appendChild(itemsDiv);
 
-                // Toggle dropdown
                 selectedDiv.addEventListener('click', function(e) {
                     e.stopPropagation();
                     
-                    // Close other dropdowns
                     document.querySelectorAll('.select-items.show').forEach(item => {
                         if (item !== itemsDiv) {
                             item.classList.remove('show');
@@ -2447,13 +2543,11 @@
                         }
                     });
 
-                    // Toggle this dropdown
                     this.classList.toggle('select-arrow-active');
                     itemsDiv.classList.toggle('show');
                 });
             });
 
-            // Close dropdowns when clicking outside
             document.addEventListener('click', function() {
                 document.querySelectorAll('.select-items.show').forEach(item => {
                     item.classList.remove('show');
@@ -2462,7 +2556,6 @@
             });
         }
 
-        // Update custom selects when options change
         function updateCustomSelects() {
             const customSelects = document.querySelectorAll('.custom-select');
             customSelects.forEach(wrapper => {
@@ -2470,10 +2563,8 @@
                 const itemsDiv = wrapper.querySelector('.select-items');
                 const selectedDiv = wrapper.querySelector('.select-selected');
 
-                // Clear existing options
                 itemsDiv.innerHTML = '';
 
-                // Add all options
                 for (let i = 0; i < select.options.length; i++) {
                     const optionDiv = document.createElement('div');
                     optionDiv.textContent = select.options[i].text;
@@ -2507,7 +2598,6 @@
             });
         }
 
-        // Initialize custom selects after a short delay
         setTimeout(() => {
             initCustomSelects();
         }, 500);
