@@ -497,6 +497,12 @@
             color: #666;
         }
 
+        .stats-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #F36F2a;
+        }
+
         .error-message {
             background: #fee;
             color: #c33;
@@ -657,13 +663,14 @@
                         <tr>
                             <th id="thExtension">التحويلة</th>
                             <th id="thName">الاسم</th>
+                            <th id="thJobTitle">المهنة</th>
                             <th id="thDepartment">القسم</th>
                             <th id="thRegion">المنطقة المكتبية</th>
                         </tr>
                     </thead>
                     <tbody id="tableBody">
                         <tr>
-                            <td colspan="4" class="loading">جاري تحميل البيانات...</td>
+                            <td colspan="5" class="loading">جاري تحميل البيانات...</td>
                         </tr>
                     </tbody>
                 </table>
@@ -683,6 +690,23 @@
             </div>
 
             <div class="admin-content">
+                <!-- Analytics Section -->
+                <div class="settings-grid" style="margin-bottom: 30px;">
+                    <div class="settings-card">
+                        <h3>
+                            <span>📊 Department Statistics</span>
+                        </h3>
+                        <div class="settings-list" id="departmentStats"></div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>
+                            <span>📍 Region Statistics</span>
+                        </h3>
+                        <div class="settings-list" id="regionStats"></div>
+                    </div>
+                </div>
+
                 <!-- Settings Section -->
                 <div class="settings-grid">
                     <div class="settings-card">
@@ -715,6 +739,7 @@
                             <tr>
                                 <th>Extension</th>
                                 <th>Name</th>
+                                <th>Job Title</th>
                                 <th>Department</th>
                                 <th>Region</th>
                                 <th>Actions</th>
@@ -722,7 +747,7 @@
                         </thead>
                         <tbody id="adminTableBody">
                             <tr>
-                                <td colspan="5" class="loading">Loading data...</td>
+                                <td colspan="6" class="loading">Loading data...</td>
                             </tr>
                         </tbody>
                     </table>
@@ -774,6 +799,14 @@
                 <div class="form-group">
                     <label>Employee Name (English):</label>
                     <input type="text" id="nameEnInput" required>
+                </div>
+                <div class="form-group">
+                    <label>Job Title (Arabic) - Optional:</label>
+                    <input type="text" id="jobTitleArInput">
+                </div>
+                <div class="form-group">
+                    <label>Job Title (English) - Optional:</label>
+                    <input type="text" id="jobTitleEnInput">
                 </div>
                 <div class="form-group">
                     <label>Department:</label>
@@ -848,10 +881,10 @@
 
             <div class="info-box">
                 <h3>Required File Format:</h3>
-                <pre>extension,name_ar,name_en,department,region
-101,أحمد محمد,Ahmed Mohammed,IT,الرياض
-102,فاطمة علي,Fatima Ali,HR,Riyadh</pre>
-                <p style="margin-top: 10px; color: #2e7d32;"><strong>Note:</strong> You can use Arabic or English names for departments and regions</p>
+                <pre>extension,name_ar,name_en,job_title_ar,job_title_en,department,region
+101,أحمد محمد,Ahmed Mohammed,مدير IT,IT Manager,IT,الرياض
+102,فاطمة علي,Fatima Ali,موظفة HR,HR Officer,HR,Riyadh</pre>
+                <p style="margin-top: 10px; color: #2e7d32;"><strong>Note:</strong> Job titles are optional. You can use Arabic or English names for departments and regions</p>
                 <div style="margin-top: 15px;">
                     <button class="btn btn-warning" onclick="downloadTemplate()">📥 Download Excel Template</button>
                 </div>
@@ -883,10 +916,10 @@
 
             <div class="info-box">
                 <h3>Required File Format:</h3>
-                <pre>extension,name_ar,name_en,department,region
-101,أحمد محمد المحدث,Ahmed Mohammed Updated,IT,الدمام
-102,,,HR,Riyadh</pre>
-                <p style="margin-top: 10px;"><strong>Note:</strong> Existing extensions will be updated based on extension number</p>
+                <pre>extension,name_ar,name_en,job_title_ar,job_title_en,department,region
+101,أحمد محمد المحدث,Ahmed Mohammed Updated,مدير جديد,New Manager,IT,الدمام
+102,,,موظف محدث,Updated Employee,HR,Riyadh</pre>
+                <p style="margin-top: 10px;"><strong>Note:</strong> Existing extensions will be updated based on extension number. Job titles are optional</p>
                 <div style="margin-top: 15px;">
                     <button class="btn btn-warning" onclick="downloadTemplate()">📥 Download Excel Template</button>
                 </div>
@@ -997,6 +1030,7 @@
                     clearBtn: 'مسح الفلاتر',
                     thExtension: 'التحويلة',
                     thName: 'الاسم',
+                    thJobTitle: 'المهنة',
                     thDepartment: 'القسم',
                     thRegion: 'المنطقة المكتبية'
                 },
@@ -1012,6 +1046,7 @@
                     clearBtn: 'Clear Filters',
                     thExtension: 'Extension',
                     thName: 'Name',
+                    thJobTitle: 'Job Title',
                     thDepartment: 'Department',
                     thRegion: 'Office Region'
                 }
@@ -1033,6 +1068,7 @@
             // Table headers
             document.getElementById('thExtension').textContent = t.thExtension;
             document.getElementById('thName').textContent = t.thName;
+            document.getElementById('thJobTitle').textContent = t.thJobTitle;
             document.getElementById('thDepartment').textContent = t.thDepartment;
             document.getElementById('thRegion').textContent = t.thRegion;
         }
@@ -1154,13 +1190,14 @@
                 filterAndDisplay();
                 if (isAdmin) {
                     displayAdminExtensions();
+                    displayAnalytics();
                 }
                 console.log('Extensions loaded:', allExtensions.length);
             } catch (error) {
                 console.error('Error loading extensions:', error);
                 document.getElementById('tableBody').innerHTML = `
                     <tr>
-                        <td colspan="4" style="color: red; padding: 40px; text-align: center;">
+                        <td colspan="5" style="color: red; padding: 40px; text-align: center;">
                             Error loading data. Please refresh the page.
                         </td>
                     </tr>
@@ -1337,7 +1374,7 @@
             if (extensions.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="4" class="empty-state">
+                        <td colspan="5" class="empty-state">
                             <h3>${currentLang === 'ar' ? 'لا توجد نتائج' : 'No results found'}</h3>
                         </td>
                     </tr>
@@ -1347,12 +1384,14 @@
 
             tbody.innerHTML = extensions.map(ext => {
                 const name = currentLang === 'ar' ? ext.name_ar : ext.name_en;
+                const jobTitle = currentLang === 'ar' ? (ext.job_title_ar || '-') : (ext.job_title_en || '-');
                 const department = getDisplayDepartment(ext.department_id);
                 const region = getDisplayRegion(ext.region_id);
                 return `
                     <tr>
                         <td class="extension-cell">${ext.extension}</td>
                         <td class="name-cell">${name}</td>
+                        <td class="department-cell">${jobTitle}</td>
                         <td class="department-cell">${department}</td>
                         <td><span class="region-cell">${region}</span></td>
                     </tr>
@@ -1366,7 +1405,7 @@
             if (allExtensions.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="5" class="empty-state">
+                        <td colspan="6" class="empty-state">
                             <h3>No extensions found</h3>
                         </td>
                     </tr>
@@ -1375,12 +1414,14 @@
             }
 
             tbody.innerHTML = allExtensions.map(ext => {
+                const jobTitle = ext.job_title_en || '-';
                 const department = getDisplayDepartment(ext.department_id);
                 const region = getDisplayRegion(ext.region_id);
                 return `
                     <tr>
                         <td class="extension-cell">${ext.extension}</td>
                         <td class="name-cell">${ext.name_en}</td>
+                        <td class="department-cell">${jobTitle}</td>
                         <td class="department-cell">${department}</td>
                         <td><span class="region-cell">${region}</span></td>
                         <td>
@@ -1404,6 +1445,55 @@
                 { showing: 'Showing', of: 'of', extensions: 'extensions' };
             
             resultsInfo.textContent = `${t.showing} ${displayed} ${t.of} ${total} ${t.extensions}`;
+        }
+
+        // Analytics
+        function displayAnalytics() {
+            // Department statistics
+            const deptStats = {};
+            allExtensions.forEach(ext => {
+                const deptId = ext.department_id || 'unassigned';
+                deptStats[deptId] = (deptStats[deptId] || 0) + 1;
+            });
+
+            const deptStatsContainer = document.getElementById('departmentStats');
+            const deptStatsHtml = Object.entries(deptStats)
+                .sort((a, b) => b[1] - a[1])
+                .map(([deptId, count]) => {
+                    const deptName = deptId === 'unassigned' ? 'Unassigned' : getDisplayDepartment(deptId);
+                    return `
+                        <div class="settings-item">
+                            <div class="settings-item-text">
+                                <div class="settings-item-label">${deptName}</div>
+                            </div>
+                            <div class="stats-number">${count}</div>
+                        </div>
+                    `;
+                }).join('');
+            deptStatsContainer.innerHTML = deptStatsHtml || '<p style="color: #999; text-align: center; padding: 20px;">No data</p>';
+
+            // Region statistics
+            const regionStats = {};
+            allExtensions.forEach(ext => {
+                const regionId = ext.region_id || 'unassigned';
+                regionStats[regionId] = (regionStats[regionId] || 0) + 1;
+            });
+
+            const regionStatsContainer = document.getElementById('regionStats');
+            const regionStatsHtml = Object.entries(regionStats)
+                .sort((a, b) => b[1] - a[1])
+                .map(([regionId, count]) => {
+                    const regionName = regionId === 'unassigned' ? 'Unassigned' : getDisplayRegion(regionId);
+                    return `
+                        <div class="settings-item">
+                            <div class="settings-item-text">
+                                <div class="settings-item-label">${regionName}</div>
+                            </div>
+                            <div class="stats-number">${count}</div>
+                        </div>
+                    `;
+                }).join('');
+            regionStatsContainer.innerHTML = regionStatsHtml || '<p style="color: #999; text-align: center; padding: 20px;">No data</p>';
         }
 
         // Login/Logout
@@ -1635,6 +1725,8 @@
             document.getElementById('extensionInput').value = ext.extension;
             document.getElementById('nameArInput').value = ext.name_ar;
             document.getElementById('nameEnInput').value = ext.name_en;
+            document.getElementById('jobTitleArInput').value = ext.job_title_ar || '';
+            document.getElementById('jobTitleEnInput').value = ext.job_title_en || '';
             
             populateDepartmentSelects();
             populateRegionSelects();
@@ -1652,6 +1744,8 @@
             const extension = document.getElementById('extensionInput').value;
             const name_ar = document.getElementById('nameArInput').value;
             const name_en = document.getElementById('nameEnInput').value;
+            const job_title_ar = document.getElementById('jobTitleArInput').value || '';
+            const job_title_en = document.getElementById('jobTitleEnInput').value || '';
             const department_id = document.getElementById('departmentInput').value;
             const region_id = document.getElementById('regionInput').value;
             const editId = document.getElementById('editId').value;
@@ -1665,23 +1759,23 @@
             try {
                 if (editId) {
                     await updateDoc(doc(db, 'extensions', editId), {
-                        extension, name_ar, name_en, department_id, region_id, updatedAt: new Date()
+                        extension, name_ar, name_en, job_title_ar, job_title_en, department_id, region_id, updatedAt: new Date()
                     });
                     
                     // Update in local array
                     const index = allExtensions.findIndex(e => e.id === editId);
                     if (index !== -1) {
-                        allExtensions[index] = { id: editId, extension, name_ar, name_en, department_id, region_id };
+                        allExtensions[index] = { id: editId, extension, name_ar, name_en, job_title_ar, job_title_en, department_id, region_id };
                     }
                     
                     alert('Extension updated successfully!');
                 } else {
                     const docRef = await addDoc(collection(db, 'extensions'), {
-                        extension, name_ar, name_en, department_id, region_id, createdAt: new Date()
+                        extension, name_ar, name_en, job_title_ar, job_title_en, department_id, region_id, createdAt: new Date()
                     });
                     
                     // Add to local array
-                    allExtensions.push({ id: docRef.id, extension, name_ar, name_en, department_id, region_id });
+                    allExtensions.push({ id: docRef.id, extension, name_ar, name_en, job_title_ar, job_title_en, department_id, region_id });
                     // Re-sort extensions
                     allExtensions.sort((a, b) => {
                         const extA = parseInt(a.extension) || 0;
@@ -1696,6 +1790,7 @@
                 filterAndDisplay();
                 if (isAdmin) {
                     displayAdminExtensions();
+                    displayAnalytics();
                 }
             } catch (error) {
                 console.error('Error saving extension:', error);
@@ -1741,6 +1836,7 @@
                     filterAndDisplay();
                     if (isAdmin) {
                         displayAdminExtensions();
+                        displayAnalytics();
                     }
                 }
                 
@@ -1756,10 +1852,10 @@
         window.downloadTemplate = function() {
             const wb = XLSX.utils.book_new();
             const wsData = [
-                ['extension', 'name_ar', 'name_en', 'department', 'region'],
-                ['101', 'أحمد محمد', 'Ahmed Mohammed', 'IT', 'الرياض'],
-                ['102', 'فاطمة علي', 'Fatima Ali', 'HR', 'Jeddah'],
-                ['103', 'خالد عبدالله', 'Khalid Abdullah', 'Finance', 'Riyadh']
+                ['extension', 'name_ar', 'name_en', 'job_title_ar', 'job_title_en', 'department', 'region'],
+                ['101', 'أحمد محمد', 'Ahmed Mohammed', 'مدير تقنية المعلومات', 'IT Manager', 'IT', 'الرياض'],
+                ['102', 'فاطمة علي', 'Fatima Ali', 'مسؤولة الموارد البشرية', 'HR Officer', 'HR', 'Jeddah'],
+                ['103', 'خالد عبدالله', 'Khalid Abdullah', 'محاسب', 'Accountant', 'Finance', 'Riyadh']
             ];
             const ws = XLSX.utils.aoa_to_sheet(wsData);
             XLSX.utils.book_append_sheet(wb, ws, 'Extensions');
@@ -1822,6 +1918,7 @@
                                 <th>Extension</th>
                                 <th>Name (Arabic)</th>
                                 <th>Name (English)</th>
+                                <th>Job Title</th>
                                 <th>Department</th>
                                 <th>Region</th>
                             </tr>
@@ -1832,11 +1929,13 @@
                                 const regionId = getRegionIdByName(row.region);
                                 const dept = deptId ? getDisplayDepartment(deptId) : '-';
                                 const region = regionId ? getDisplayRegion(regionId) : '-';
+                                const jobTitle = row.job_title_en || row.job_title_ar || '-';
                                 return `
                                 <tr>
                                     <td>${row.extension}</td>
                                     <td>${row.name_ar}</td>
                                     <td>${row.name_en}</td>
+                                    <td>${jobTitle}</td>
                                     <td>${dept}</td>
                                     <td>${region}</td>
                                 </tr>
@@ -1871,6 +1970,8 @@
                         extension: row.extension,
                         name_ar: row.name_ar,
                         name_en: row.name_en,
+                        job_title_ar: row.job_title_ar || '',
+                        job_title_en: row.job_title_en || '',
                         department_id: department_id || '',
                         region_id: region_id || '',
                         createdAt: new Date()
@@ -1882,6 +1983,8 @@
                         extension: row.extension,
                         name_ar: row.name_ar,
                         name_en: row.name_en,
+                        job_title_ar: row.job_title_ar || '',
+                        job_title_en: row.job_title_en || '',
                         department_id: department_id || '',
                         region_id: region_id || ''
                     });
@@ -1902,6 +2005,7 @@
                 filterAndDisplay();
                 if (isAdmin) {
                     displayAdminExtensions();
+                    displayAnalytics();
                 }
             } catch (error) {
                 console.error('Error importing:', error);
@@ -1969,6 +2073,7 @@
                                 <th>Extension</th>
                                 <th>Name (Arabic)</th>
                                 <th>Name (English)</th>
+                                <th>Job Title</th>
                                 <th>Department</th>
                                 <th>Region</th>
                             </tr>
@@ -1979,11 +2084,13 @@
                                 const regionId = row.region ? getRegionIdByName(row.region) : null;
                                 const dept = deptId ? getDisplayDepartment(deptId) : '-';
                                 const region = regionId ? getDisplayRegion(regionId) : '-';
+                                const jobTitle = row.job_title_en || row.job_title_ar || '-';
                                 return `
                                 <tr>
                                     <td>${row.extension}</td>
                                     <td>${row.name_ar || '-'}</td>
                                     <td>${row.name_en || '-'}</td>
+                                    <td>${jobTitle}</td>
                                     <td>${dept}</td>
                                     <td>${region}</td>
                                 </tr>
@@ -2020,6 +2127,8 @@
                         
                         if (row.name_ar) updateFields.name_ar = row.name_ar;
                         if (row.name_en) updateFields.name_en = row.name_en;
+                        if (row.job_title_ar !== undefined) updateFields.job_title_ar = row.job_title_ar || '';
+                        if (row.job_title_en !== undefined) updateFields.job_title_en = row.job_title_en || '';
                         if (row.department) {
                             const deptId = getDepartmentIdByName(row.department);
                             if (deptId) updateFields.department_id = deptId;
@@ -2047,6 +2156,7 @@
                 filterAndDisplay();
                 if (isAdmin) {
                     displayAdminExtensions();
+                    displayAnalytics();
                 }
             } catch (error) {
                 console.error('Error updating:', error);
