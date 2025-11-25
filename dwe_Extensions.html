@@ -115,18 +115,180 @@
         .control-group input,
         .control-group select {
             padding: 12px 15px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
             font-size: 1rem;
             transition: all 0.3s;
             background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .control-group select {
+            padding-right: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23F36F2a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 12px center;
+            background-size: 20px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            cursor: pointer;
+        }
+
+        .control-group select:hover {
+            border-color: #F36F2a;
+            box-shadow: 0 4px 12px rgba(243, 111, 42, 0.15);
         }
 
         .control-group input:focus,
         .control-group select:focus {
             outline: none;
             border-color: #F36F2a;
-            box-shadow: 0 0 0 3px rgba(243, 111, 42, 0.1);
+            box-shadow: 0 0 0 4px rgba(243, 111, 42, 0.12), 0 4px 12px rgba(243, 111, 42, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .control-group input:hover {
+            border-color: #ffb89a;
+            box-shadow: 0 4px 12px rgba(243, 111, 42, 0.1);
+        }
+
+        .control-group select option {
+            padding: 12px 15px;
+            background: white;
+            color: #333;
+            font-size: 1rem;
+            border-radius: 8px;
+            margin: 4px;
+        }
+
+        .control-group select option:hover,
+        .control-group select option:checked,
+        .control-group select option:focus {
+            background: linear-gradient(135deg, #fff5f0 0%, #ffe8dc 100%);
+            color: #F36F2a;
+            font-weight: 600;
+        }
+
+        .control-group select option:first-child {
+            color: #999;
+            font-style: italic;
+        }
+
+        /* Custom Dropdown Styles */
+        .custom-select {
+            position: relative;
+        }
+
+        .custom-select select {
+            display: none;
+        }
+
+        .select-selected {
+            padding: 12px 15px;
+            padding-right: 40px;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            position: relative;
+            user-select: none;
+        }
+
+        .select-selected:after {
+            content: '';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid #F36F2a;
+            transition: transform 0.3s;
+        }
+
+        .select-selected.select-arrow-active:after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .select-selected:hover {
+            border-color: #F36F2a;
+            box-shadow: 0 4px 12px rgba(243, 111, 42, 0.15);
+        }
+
+        .select-items {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            right: 0;
+            z-index: 99;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            max-height: 300px;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .select-items.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .select-items div {
+            padding: 12px 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .select-items div:first-child {
+            border-radius: 12px 12px 0 0;
+            color: #999;
+            font-style: italic;
+        }
+
+        .select-items div:last-child {
+            border-radius: 0 0 12px 12px;
+        }
+
+        .select-items div:hover {
+            background: linear-gradient(135deg, #fff5f0 0%, #ffe8dc 100%);
+            border-left-color: #F36F2a;
+            padding-left: 18px;
+        }
+
+        .select-items div.same-as-selected {
+            background: linear-gradient(135deg, #fff5f0 0%, #ffe8dc 100%);
+            color: #F36F2a;
+            font-weight: 600;
+            border-left-color: #F36F2a;
+        }
+
+        .select-items::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .select-items::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 12px;
+        }
+
+        .select-items::-webkit-scrollbar-thumb {
+            background: #F36F2a;
+            border-radius: 12px;
+        }
+
+        .select-items::-webkit-scrollbar-thumb:hover {
+            background: #d45e22;
         }
 
         .action-buttons {
@@ -629,8 +791,8 @@
             <div class="controls">
                 <div class="controls-grid">
                     <div class="control-group">
-                        <label id="searchLabel">بحث (الاسم أو التحويلة):</label>
-                        <input type="text" id="searchInput" placeholder="ابحث عن موظف أو رقم تحويلة...">
+                        <label id="searchLabel">بحث (الاسم، التحويلة، أو المهنة):</label>
+                        <input type="text" id="searchInput" placeholder="ابحث عن موظف، رقم تحويلة، أو مهنة...">
                     </div>
 
                     <div class="control-group">
@@ -801,11 +963,11 @@
                     <input type="text" id="nameEnInput" required>
                 </div>
                 <div class="form-group">
-                    <label>Job Title (Arabic) - Optional:</label>
+                    <label>Job Title (Arabic)<span style="font-style: italic; color: grey;"> - Optional</span>:</label>
                     <input type="text" id="jobTitleArInput">
                 </div>
                 <div class="form-group">
-                    <label>Job Title (English) - Optional:</label>
+                    <label>Job Title (English)<span style="font-style: italic; color: grey;"> - Optional</span>:</label>
                     <input type="text" id="jobTitleEnInput">
                 </div>
                 <div class="form-group">
@@ -1014,6 +1176,9 @@
             filterAndDisplay();
             populateDepartmentSelects();
             populateRegionSelects();
+
+            // Update custom dropdowns
+            setTimeout(updateCustomSelects, 100);
         };
 
         function updateUILanguage() {
@@ -1023,8 +1188,8 @@
                     adminBtn: 'صفحة الإدارة',
                     mainTitle: 'دليل التحويلات الداخلية',
                     mainSubtitle: 'Dar Wa Emaar Internal Extensions Directory',
-                    searchLabel: 'بحث (الاسم أو التحويلة):',
-                    searchPlaceholder: 'ابحث عن موظف أو رقم تحويلة...',
+                    searchLabel: 'بحث (الاسم، التحويلة، أو المهنة):',
+                    searchPlaceholder: 'ابحث عن موظف، رقم تحويلة، أو مهنة...',
                     regionLabel: 'المنطقة المكتبية:',
                     departmentLabel: 'القسم:',
                     clearBtn: 'مسح الفلاتر',
@@ -1039,8 +1204,8 @@
                     adminBtn: 'Admin Panel',
                     mainTitle: 'Internal Extensions Directory',
                     mainSubtitle: 'دليل التحويلات الداخلية - دار وعمار',
-                    searchLabel: 'Search (Name or Extension):',
-                    searchPlaceholder: 'Search for employee or extension number...',
+                    searchLabel: 'Search (Name, Extension, or Job Title):',
+                    searchPlaceholder: 'Search for employee, extension number, or job title...',
                     regionLabel: 'Office Region:',
                     departmentLabel: 'Department:',
                     clearBtn: 'Clear Filters',
@@ -1304,6 +1469,9 @@
                 // Restore previous selection if it exists
                 if (currentValue) select.value = currentValue;
             });
+
+            // Update custom selects display
+            setTimeout(updateCustomSelects, 100);
         }
 
         function populateRegionSelects() {
@@ -1343,6 +1511,9 @@
                 // Restore previous selection if it exists
                 if (currentValue) select.value = currentValue;
             });
+
+            // Update custom selects display
+            setTimeout(updateCustomSelects, 100);
         }
 
         function filterAndDisplay() {
@@ -1353,11 +1524,17 @@
             let filtered = allExtensions.filter(ext => {
                 const nameAr = ext.name_ar ? ext.name_ar.toLowerCase() : '';
                 const nameEn = ext.name_en ? ext.name_en.toLowerCase() : '';
+                const jobTitleAr = ext.job_title_ar ? ext.job_title_ar.toLowerCase() : '';
+                const jobTitleEn = ext.job_title_en ? ext.job_title_en.toLowerCase() : '';
                 const extensionStr = ext.extension ? String(ext.extension).toLowerCase() : '';
+                
                 const matchesSearch = !searchTerm || 
                     nameAr.includes(searchTerm) ||
                     nameEn.includes(searchTerm) ||
+                    jobTitleAr.includes(searchTerm) ||
+                    jobTitleEn.includes(searchTerm) ||
                     extensionStr.includes(searchTerm);
+                    
                 const matchesRegion = !regionFilter || ext.region_id === regionFilter;
                 const matchesDepartment = !departmentFilter || ext.department_id === departmentFilter;
 
@@ -1701,6 +1878,24 @@
             document.getElementById('searchInput').value = '';
             document.getElementById('regionFilter').value = '';
             document.getElementById('departmentFilter').value = '';
+            
+            // Update custom select displays
+            setTimeout(() => {
+                document.querySelectorAll('.custom-select').forEach(wrapper => {
+                    const select = wrapper.querySelector('select');
+                    const selectedDiv = wrapper.querySelector('.select-selected');
+                    if (select && selectedDiv && select.selectedIndex >= 0) {
+                        selectedDiv.textContent = select.options[select.selectedIndex].text;
+                        
+                        // Update selected class in items
+                        const items = wrapper.querySelectorAll('.select-items div');
+                        items.forEach((item, index) => {
+                            item.classList.toggle('same-as-selected', index === select.selectedIndex);
+                        });
+                    }
+                });
+            }, 50);
+            
             filterAndDisplay();
         };
 
@@ -2175,6 +2370,147 @@
         // Initialize
         updateUILanguage();
         loadAllData();
+
+        // Custom Select Dropdowns
+        function initCustomSelects() {
+            const selects = document.querySelectorAll('.control-group select');
+            
+            selects.forEach(selectElement => {
+                // Skip if already initialized or if it's in admin modal
+                if (selectElement.parentElement.classList.contains('custom-select') || 
+                    selectElement.closest('.modal')) {
+                    return;
+                }
+
+                // Wrap select in custom container
+                const wrapper = document.createElement('div');
+                wrapper.className = 'custom-select';
+                selectElement.parentNode.insertBefore(wrapper, selectElement);
+                wrapper.appendChild(selectElement);
+
+                // Create custom selected display
+                const selectedDiv = document.createElement('div');
+                selectedDiv.className = 'select-selected';
+                selectedDiv.textContent = selectElement.options[selectElement.selectedIndex].text;
+                wrapper.appendChild(selectedDiv);
+
+                // Create items container
+                const itemsDiv = document.createElement('div');
+                itemsDiv.className = 'select-items';
+
+                // Add all options
+                for (let i = 0; i < selectElement.options.length; i++) {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.textContent = selectElement.options[i].text;
+                    optionDiv.dataset.value = selectElement.options[i].value;
+                    
+                    if (i === selectElement.selectedIndex) {
+                        optionDiv.classList.add('same-as-selected');
+                    }
+
+                    optionDiv.addEventListener('click', function(e) {
+                        // Update select value
+                        const select = this.closest('.custom-select').querySelector('select');
+                        const selectedDisplay = this.closest('.custom-select').querySelector('.select-selected');
+                        
+                        select.value = this.dataset.value;
+                        selectedDisplay.textContent = this.textContent;
+
+                        // Update selected class
+                        this.parentElement.querySelectorAll('div').forEach(div => {
+                            div.classList.remove('same-as-selected');
+                        });
+                        this.classList.add('same-as-selected');
+
+                        // Close dropdown
+                        selectedDisplay.classList.remove('select-arrow-active');
+                        this.parentElement.classList.remove('show');
+
+                        // Trigger change event
+                        select.dispatchEvent(new Event('change'));
+                    });
+
+                    itemsDiv.appendChild(optionDiv);
+                }
+
+                wrapper.appendChild(itemsDiv);
+
+                // Toggle dropdown
+                selectedDiv.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    // Close other dropdowns
+                    document.querySelectorAll('.select-items.show').forEach(item => {
+                        if (item !== itemsDiv) {
+                            item.classList.remove('show');
+                            item.previousElementSibling.classList.remove('select-arrow-active');
+                        }
+                    });
+
+                    // Toggle this dropdown
+                    this.classList.toggle('select-arrow-active');
+                    itemsDiv.classList.toggle('show');
+                });
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function() {
+                document.querySelectorAll('.select-items.show').forEach(item => {
+                    item.classList.remove('show');
+                    item.previousElementSibling.classList.remove('select-arrow-active');
+                });
+            });
+        }
+
+        // Update custom selects when options change
+        function updateCustomSelects() {
+            const customSelects = document.querySelectorAll('.custom-select');
+            customSelects.forEach(wrapper => {
+                const select = wrapper.querySelector('select');
+                const itemsDiv = wrapper.querySelector('.select-items');
+                const selectedDiv = wrapper.querySelector('.select-selected');
+
+                // Clear existing options
+                itemsDiv.innerHTML = '';
+
+                // Add all options
+                for (let i = 0; i < select.options.length; i++) {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.textContent = select.options[i].text;
+                    optionDiv.dataset.value = select.options[i].value;
+                    
+                    if (i === select.selectedIndex) {
+                        optionDiv.classList.add('same-as-selected');
+                        selectedDiv.textContent = select.options[i].text;
+                    }
+
+                    optionDiv.addEventListener('click', function(e) {
+                        const thisSelect = this.closest('.custom-select').querySelector('select');
+                        const thisSelectedDisplay = this.closest('.custom-select').querySelector('.select-selected');
+                        
+                        thisSelect.value = this.dataset.value;
+                        thisSelectedDisplay.textContent = this.textContent;
+
+                        this.parentElement.querySelectorAll('div').forEach(div => {
+                            div.classList.remove('same-as-selected');
+                        });
+                        this.classList.add('same-as-selected');
+
+                        thisSelectedDisplay.classList.remove('select-arrow-active');
+                        this.parentElement.classList.remove('show');
+
+                        thisSelect.dispatchEvent(new Event('change'));
+                    });
+
+                    itemsDiv.appendChild(optionDiv);
+                }
+            });
+        }
+
+        // Initialize custom selects after a short delay
+        setTimeout(() => {
+            initCustomSelects();
+        }, 500);
     </script>
 </body>
 </html>
