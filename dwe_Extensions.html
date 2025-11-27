@@ -222,146 +222,6 @@
             box-shadow: 0 4px 12px rgba(243, 111, 42, 0.1);
         }
 
-        .control-group select option {
-            padding: 12px 15px;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            font-size: 1rem;
-            border-radius: 8px;
-            margin: 4px;
-        }
-
-        .control-group select option:hover,
-        .control-group select option:checked,
-        .control-group select option:focus {
-            background: var(--bg-secondary);
-            color: #F36F2a;
-            font-weight: 600;
-        }
-
-        .control-group select option:first-child {
-            color: var(--text-muted);
-            font-style: italic;
-        }
-
-        /* Custom Dropdown Styles */
-        .custom-select {
-            position: relative;
-        }
-
-        .custom-select select {
-            display: none;
-        }
-
-        .select-selected {
-            padding: 12px 15px;
-            padding-right: 40px;
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            background: var(--input-bg);
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 2px 8px var(--shadow-sm);
-            position: relative;
-            user-select: none;
-        }
-
-        .select-selected:after {
-            content: '';
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0;
-            height: 0;
-            border-left: 6px solid transparent;
-            border-right: 6px solid transparent;
-            border-top: 6px solid #F36F2a;
-            transition: transform 0.3s;
-        }
-
-        .select-selected.select-arrow-active:after {
-            transform: translateY(-50%) rotate(180deg);
-        }
-
-        .select-selected:hover {
-            border-color: #F36F2a;
-            box-shadow: 0 4px 12px rgba(243, 111, 42, 0.15);
-        }
-
-        .select-items {
-            position: absolute;
-            top: calc(100% + 8px);
-            left: 0;
-            right: 0;
-            z-index: 99;
-            background: var(--bg-primary);
-            border-radius: 12px;
-            box-shadow: 0 8px 24px var(--shadow-md);
-            max-height: 300px;
-            overflow-y: auto;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .select-items.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .select-items div {
-            padding: 12px 15px;
-            cursor: pointer;
-            transition: all 0.2s;
-            border-left: 3px solid transparent;
-            color: var(--text-primary);
-        }
-
-        .select-items div:first-child {
-            border-radius: 12px 12px 0 0;
-            color: var(--text-muted);
-            font-style: italic;
-        }
-
-        .select-items div:last-child {
-            border-radius: 0 0 12px 12px;
-        }
-
-        .select-items div:hover {
-            background: var(--bg-secondary);
-            border-left-color: #F36F2a;
-            padding-left: 18px;
-        }
-
-        .select-items div.same-as-selected {
-            background: var(--bg-secondary);
-            color: #F36F2a;
-            font-weight: 600;
-            border-left-color: #F36F2a;
-        }
-
-        .select-items::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .select-items::-webkit-scrollbar-track {
-            background: var(--scrollbar-track);
-            border-radius: 12px;
-        }
-
-        .select-items::-webkit-scrollbar-thumb {
-            background: var(--scrollbar-thumb);
-            border-radius: 12px;
-        }
-
-        .select-items::-webkit-scrollbar-thumb:hover {
-            background: var(--scrollbar-thumb-hover);
-        }
-
         .action-buttons {
             display: flex;
             gap: 15px;
@@ -837,6 +697,90 @@
             font-size: 0.9rem;
         }
 
+        /* Snackbar */
+        .snackbar {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #323232;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 10000;
+            transition: bottom 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 300px;
+            max-width: 500px;
+        }
+
+        .snackbar.show {
+            bottom: 30px;
+        }
+
+        .snackbar.success {
+            background: #2e7d32;
+        }
+
+        .snackbar.error {
+            background: #c62828;
+        }
+
+        .snackbar.warning {
+            background: #f57c00;
+        }
+
+        .snackbar-icon {
+            font-size: 1.5rem;
+        }
+
+        .snackbar-message {
+            flex: 1;
+        }
+
+        /* New Badge */
+        .new-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-left: 8px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 6px rgba(76, 175, 80, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.9;
+            }
+        }
+
+        /* Admin Search and Filters */
+        .admin-filters {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .admin-filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 1.8rem;
@@ -873,10 +817,20 @@
             .settings-grid {
                 grid-template-columns: 1fr;
             }
+
+            .admin-filters-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Snackbar -->
+    <div id="snackbar" class="snackbar">
+        <span class="snackbar-icon" id="snackbarIcon"></span>
+        <span class="snackbar-message" id="snackbarMessage"></span>
+    </div>
+
     <!-- Main Page -->
     <div id="mainPage">
         <div class="container">
@@ -996,10 +950,42 @@
                 </div>
 
                 <!-- Extensions Management -->
-                <div class="action-buttons" style="margin-bottom: 30px;">
+                <div class="action-buttons" style="margin-bottom: 20px;">
                     <button class="btn btn-success" onclick="openAddModal()" id="addExtBtn">Add New Extension</button>
                     <button class="btn btn-info" onclick="openBulkImportModal()" id="bulkImportBtn">Bulk Import</button>
                     <button class="btn btn-primary" onclick="openBulkUpdateModal()" id="bulkUpdateBtn">Bulk Update</button>
+                </div>
+
+                <!-- Admin Search and Filters -->
+                <div class="admin-filters">
+                    <div class="admin-filters-grid">
+                        <div class="control-group">
+                            <label>Search Extensions:</label>
+                            <input type="text" id="adminSearchInput" placeholder="Search by name, extension, or job title...">
+                        </div>
+                        <div class="control-group">
+                            <label>Filter by Department:</label>
+                            <select id="adminDepartmentFilter">
+                                <option value="">All Departments</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label>Filter by Region:</label>
+                            <select id="adminRegionFilter">
+                                <option value="">All Regions</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label>Filter by Status:</label>
+                            <select id="adminStatusFilter">
+                                <option value="">All Extensions</option>
+                                <option value="new">New Extensions Only</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="action-buttons" style="margin-top: 15px;">
+                        <button class="btn btn-secondary" onclick="clearAdminFilters()">Clear Filters</button>
+                    </div>
                 </div>
 
                 <div class="table-container">
@@ -1152,7 +1138,7 @@
                 <h3>Required File Format:</h3>
                 <pre>extension,name_ar,name_en,job_title_ar,job_title_en,department,region
 101,أحمد محمد,Ahmed Mohammed,مدير IT,IT Manager,IT,الرياض
-102,فاطمة علي,Fatima Ali,موظفة HR,HR Officer,HR,Riyadh</pre>
+102,فاطمة علي,Fatima Ali,موظفة HR,HR Officer,HR,Jeddah</pre>
                 <p style="margin-top: 10px;"><strong>Note:</strong> Job titles are optional. You can use Arabic or English names for departments and regions</p>
                 <div style="margin-top: 15px;">
                     <button class="btn btn-warning" onclick="downloadTemplate()">📥 Download Excel Template</button>
@@ -1257,6 +1243,48 @@
         let importData = [];
         let updateData = [];
 
+        // Snackbar function
+        window.showSnackbar = function(message, type = 'success') {
+            const snackbar = document.getElementById('snackbar');
+            const snackbarIcon = document.getElementById('snackbarIcon');
+            const snackbarMessage = document.getElementById('snackbarMessage');
+
+            // Set icon based on type
+            const icons = {
+                success: '✓',
+                error: '✕',
+                warning: '⚠',
+                info: 'ℹ'
+            };
+
+            snackbarIcon.textContent = icons[type] || icons.info;
+            snackbarMessage.textContent = message;
+
+            // Remove all type classes
+            snackbar.classList.remove('success', 'error', 'warning', 'info');
+            // Add the current type class
+            snackbar.classList.add(type);
+
+            // Show snackbar
+            snackbar.classList.add('show');
+
+            // Hide after 3 seconds
+            setTimeout(() => {
+                snackbar.classList.remove('show');
+            }, 3000);
+        };
+
+        // Check if extension is new (within 30 days)
+        function isNewExtension(createdAt) {
+            if (!createdAt) return false;
+            
+            const created = createdAt.toDate ? createdAt.toDate() : new Date(createdAt);
+            const now = new Date();
+            const daysDiff = (now - created) / (1000 * 60 * 60 * 24);
+            
+            return daysDiff <= 30;
+        }
+
         // Theme Management
         function initTheme() {
             const savedTheme = localStorage.getItem('theme') || 'light';
@@ -1321,9 +1349,6 @@
             filterAndDisplay();
             populateDepartmentSelects();
             populateRegionSelects();
-
-            // Update custom dropdowns
-            setTimeout(updateCustomSelects, 100);
         };
 
         function updateUILanguage() {
@@ -1433,6 +1458,17 @@
             return region ? region.id : null;
         }
 
+        // Check if extension number already exists
+        function checkExtensionExists(extensionNumber, excludeId = null) {
+            // Normalize extension number to string and trim whitespace
+            const normalizedExtension = String(extensionNumber).trim();
+            
+            return allExtensions.some(ext => {
+                const extNumber = String(ext.extension).trim();
+                return extNumber === normalizedExtension && ext.id !== excludeId;
+            });
+        }
+
         // Load data with parallel execution and no orderBy (faster)
         async function loadDepartments() {
             try {
@@ -1497,7 +1533,7 @@
 
                 filterAndDisplay();
                 if (isAdmin) {
-                    displayAdminExtensions();
+                    filterAndDisplayAdmin();
                     displayAnalytics();
                 }
                 console.log('Extensions loaded:', allExtensions.length);
@@ -1574,19 +1610,23 @@
         }
 
         function populateDepartmentSelects() {
-            const selects = [document.getElementById('departmentInput'), document.getElementById('departmentFilter')];
+            const selects = [
+                document.getElementById('departmentInput'), 
+                document.getElementById('departmentFilter'),
+                document.getElementById('adminDepartmentFilter')
+            ];
             
             selects.forEach(select => {
                 if (!select) return;
                 
-                const isFilter = select.id === 'departmentFilter';
+                const isFilter = select.id.includes('Filter');
                 const currentValue = select.value;
                 
                 select.innerHTML = '';
                 const defaultOption = document.createElement('option');
                 defaultOption.value = '';
                 
-                if (isAdmin) {
+                if (isAdmin || select.id === 'adminDepartmentFilter') {
                     defaultOption.textContent = isFilter ? 'All Departments' : 'Select Department';
                 } else {
                     defaultOption.textContent = isFilter ? 
@@ -1598,30 +1638,32 @@
                 allDepartments.forEach(dept => {
                     const option = document.createElement('option');
                     option.value = dept.id;
-                    option.textContent = isAdmin ? dept.name_en : (currentLang === 'ar' ? dept.name_ar : dept.name_en);
+                    option.textContent = (isAdmin || select.id === 'adminDepartmentFilter') ? dept.name_en : (currentLang === 'ar' ? dept.name_ar : dept.name_en);
                     select.appendChild(option);
                 });
                 
                 if (currentValue) select.value = currentValue;
             });
-
-            setTimeout(updateCustomSelects, 100);
         }
 
         function populateRegionSelects() {
-            const selects = [document.getElementById('regionInput'), document.getElementById('regionFilter')];
+            const selects = [
+                document.getElementById('regionInput'), 
+                document.getElementById('regionFilter'),
+                document.getElementById('adminRegionFilter')
+            ];
             
             selects.forEach(select => {
                 if (!select) return;
                 
-                const isFilter = select.id === 'regionFilter';
+                const isFilter = select.id.includes('Filter');
                 const currentValue = select.value;
                 
                 select.innerHTML = '';
                 const defaultOption = document.createElement('option');
                 defaultOption.value = '';
                 
-                if (isAdmin) {
+                if (isAdmin || select.id === 'adminRegionFilter') {
                     defaultOption.textContent = isFilter ? 'All Regions' : 'Select Region';
                 } else {
                     defaultOption.textContent = isFilter ? 
@@ -1633,14 +1675,12 @@
                 allRegions.forEach(region => {
                     const option = document.createElement('option');
                     option.value = region.id;
-                    option.textContent = isAdmin ? region.name_en : (currentLang === 'ar' ? region.name_ar : region.name_en);
+                    option.textContent = (isAdmin || select.id === 'adminRegionFilter') ? region.name_en : (currentLang === 'ar' ? region.name_ar : region.name_en);
                     select.appendChild(option);
                 });
                 
                 if (currentValue) select.value = currentValue;
             });
-
-            setTimeout(updateCustomSelects, 100);
         }
 
         function filterAndDisplay() {
@@ -1691,6 +1731,7 @@
                 const jobTitle = currentLang === 'ar' ? (ext.job_title_ar || '-') : (ext.job_title_en || '-');
                 const department = getDisplayDepartment(ext.department_id);
                 const region = getDisplayRegion(ext.region_id);
+                
                 return `
                     <tr>
                         <td class="extension-cell">${ext.extension}</td>
@@ -1703,10 +1744,53 @@
             }).join('');
         }
 
-        function displayAdminExtensions() {
+        // Admin page filter and display
+        window.filterAndDisplayAdmin = function() {
+            const searchTerm = document.getElementById('adminSearchInput').value.toLowerCase();
+            const departmentFilter = document.getElementById('adminDepartmentFilter').value;
+            const regionFilter = document.getElementById('adminRegionFilter').value;
+            const statusFilter = document.getElementById('adminStatusFilter').value;
+
+            let filtered = allExtensions.filter(ext => {
+                const nameAr = ext.name_ar ? ext.name_ar.toLowerCase() : '';
+                const nameEn = ext.name_en ? ext.name_en.toLowerCase() : '';
+                const jobTitleAr = ext.job_title_ar ? ext.job_title_ar.toLowerCase() : '';
+                const jobTitleEn = ext.job_title_en ? ext.job_title_en.toLowerCase() : '';
+                const extensionStr = ext.extension ? String(ext.extension).toLowerCase() : '';
+                
+                const matchesSearch = !searchTerm || 
+                    nameAr.includes(searchTerm) ||
+                    nameEn.includes(searchTerm) ||
+                    jobTitleAr.includes(searchTerm) ||
+                    jobTitleEn.includes(searchTerm) ||
+                    extensionStr.includes(searchTerm);
+                    
+                const matchesDepartment = !departmentFilter || ext.department_id === departmentFilter;
+                const matchesRegion = !regionFilter || ext.region_id === regionFilter;
+                
+                let matchesStatus = true;
+                if (statusFilter === 'new') {
+                    matchesStatus = isNewExtension(ext.createdAt);
+                }
+
+                return matchesSearch && matchesDepartment && matchesRegion && matchesStatus;
+            });
+
+            displayAdminExtensions(filtered);
+        };
+
+        window.clearAdminFilters = function() {
+            document.getElementById('adminSearchInput').value = '';
+            document.getElementById('adminDepartmentFilter').value = '';
+            document.getElementById('adminRegionFilter').value = '';
+            document.getElementById('adminStatusFilter').value = '';
+            filterAndDisplayAdmin();
+        };
+
+        function displayAdminExtensions(extensions = allExtensions) {
             const tbody = document.getElementById('adminTableBody');
 
-            if (allExtensions.length === 0) {
+            if (extensions.length === 0) {
                 tbody.innerHTML = `
                     <tr>
                         <td colspan="6" class="empty-state">
@@ -1717,13 +1801,16 @@
                 return;
             }
 
-            tbody.innerHTML = allExtensions.map(ext => {
+            tbody.innerHTML = extensions.map(ext => {
                 const jobTitle = ext.job_title_en || '-';
                 const department = getDisplayDepartment(ext.department_id);
                 const region = getDisplayRegion(ext.region_id);
+                const isNew = isNewExtension(ext.createdAt);
+                const newBadge = isNew ? '<span class="new-badge">New</span>' : '';
+                
                 return `
                     <tr>
-                        <td class="extension-cell">${ext.extension}</td>
+                        <td class="extension-cell">${ext.extension}${newBadge}</td>
                         <td class="name-cell">${ext.name_en}</td>
                         <td class="department-cell">${jobTitle}</td>
                         <td class="department-cell">${department}</td>
@@ -1899,7 +1986,7 @@
                         allDepartments[index] = { id: editId, name_ar, name_en };
                     }
                     
-                    alert('Department updated successfully!');
+                    showSnackbar('Department updated successfully!', 'success');
                 } else {
                     const docRef = await addDoc(collection(db, 'departments'), {
                         name_ar, name_en, createdAt: new Date()
@@ -1907,7 +1994,7 @@
                     
                     allDepartments.push({ id: docRef.id, name_ar, name_en });
                     
-                    alert('Department added successfully!');
+                    showSnackbar('Department added successfully!', 'success');
                 }
 
                 closeAddDepartmentModal();
@@ -1915,7 +2002,7 @@
                 populateDepartmentSelects();
             } catch (error) {
                 console.error('Error saving department:', error);
-                alert('Error saving department');
+                showSnackbar('Error saving department', 'error');
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = originalText;
@@ -1967,7 +2054,7 @@
                         allRegions[index] = { id: editId, name_ar, name_en };
                     }
                     
-                    alert('Region updated successfully!');
+                    showSnackbar('Region updated successfully!', 'success');
                 } else {
                     const docRef = await addDoc(collection(db, 'regions'), {
                         name_ar, name_en, createdAt: new Date()
@@ -1975,7 +2062,7 @@
                     
                     allRegions.push({ id: docRef.id, name_ar, name_en });
                     
-                    alert('Region added successfully!');
+                    showSnackbar('Region added successfully!', 'success');
                 }
 
                 closeAddRegionModal();
@@ -1983,7 +2070,7 @@
                 populateRegionSelects();
             } catch (error) {
                 console.error('Error saving region:', error);
-                alert('Error saving region');
+                showSnackbar('Error saving region', 'error');
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = originalText;
@@ -1996,22 +2083,6 @@
             document.getElementById('searchInput').value = '';
             document.getElementById('regionFilter').value = '';
             document.getElementById('departmentFilter').value = '';
-            
-            setTimeout(() => {
-                document.querySelectorAll('.custom-select').forEach(wrapper => {
-                    const select = wrapper.querySelector('select');
-                    const selectedDiv = wrapper.querySelector('.select-selected');
-                    if (select && selectedDiv && select.selectedIndex >= 0) {
-                        selectedDiv.textContent = select.options[select.selectedIndex].text;
-                        
-                        const items = wrapper.querySelectorAll('.select-items div');
-                        items.forEach((item, index) => {
-                            item.classList.toggle('same-as-selected', index === select.selectedIndex);
-                        });
-                    }
-                });
-            }, 50);
-            
             filterAndDisplay();
         };
 
@@ -2052,7 +2123,7 @@
         window.handleSaveExtension = async function(event) {
             event.preventDefault();
 
-            const extension = document.getElementById('extensionInput').value;
+            const extension = document.getElementById('extensionInput').value.trim();
             const name_ar = document.getElementById('nameArInput').value;
             const name_en = document.getElementById('nameEnInput').value;
             const job_title_ar = document.getElementById('jobTitleArInput').value || '';
@@ -2060,6 +2131,13 @@
             const department_id = document.getElementById('departmentInput').value;
             const region_id = document.getElementById('regionInput').value;
             const editId = document.getElementById('editId').value;
+
+            // Check for duplicate extension
+            const isDuplicate = checkExtensionExists(extension, editId);
+            if (isDuplicate) {
+                showSnackbar('Extension number already exists! Please use a different number.', 'error');
+                return false;
+            }
 
             const submitBtn = event.target.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
@@ -2074,34 +2152,34 @@
                     
                     const index = allExtensions.findIndex(e => e.id === editId);
                     if (index !== -1) {
-                        allExtensions[index] = { id: editId, extension, name_ar, name_en, job_title_ar, job_title_en, department_id, region_id };
+                        allExtensions[index] = { ...allExtensions[index], extension, name_ar, name_en, job_title_ar, job_title_en, department_id, region_id };
                     }
                     
-                    alert('Extension updated successfully!');
+                    showSnackbar('Extension updated successfully!', 'success');
                 } else {
                     const docRef = await addDoc(collection(db, 'extensions'), {
                         extension, name_ar, name_en, job_title_ar, job_title_en, department_id, region_id, createdAt: new Date()
                     });
                     
-                    allExtensions.push({ id: docRef.id, extension, name_ar, name_en, job_title_ar, job_title_en, department_id, region_id });
+                    allExtensions.push({ id: docRef.id, extension, name_ar, name_en, job_title_ar, job_title_en, department_id, region_id, createdAt: new Date() });
                     allExtensions.sort((a, b) => {
                         const extA = parseInt(a.extension) || 0;
                         const extB = parseInt(b.extension) || 0;
                         return extA - extB;
                     });
                     
-                    alert('Extension added successfully!');
+                    showSnackbar('Extension added successfully!', 'success');
                 }
 
                 closeAddModal();
                 filterAndDisplay();
                 if (isAdmin) {
-                    displayAdminExtensions();
+                    filterAndDisplayAdmin();
                     displayAnalytics();
                 }
             } catch (error) {
                 console.error('Error saving extension:', error);
-                alert('Error saving extension');
+                showSnackbar('Error saving extension', 'error');
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = originalText;
@@ -2141,16 +2219,16 @@
                     allExtensions = allExtensions.filter(e => e.id !== deleteTargetId);
                     filterAndDisplay();
                     if (isAdmin) {
-                        displayAdminExtensions();
+                        filterAndDisplayAdmin();
                         displayAnalytics();
                     }
                 }
                 
-                alert('Deleted successfully!');
+                showSnackbar('Deleted successfully!', 'success');
                 closeDeleteModal();
             } catch (error) {
                 console.error('Error deleting:', error);
-                alert('Error deleting');
+                showSnackbar('Error deleting', 'error');
             }
         };
 
@@ -2267,12 +2345,25 @@
 
             try {
                 let successCount = 0;
+                let duplicateCount = 0;
+                const duplicates = [];
+                
                 for (const row of importData) {
+                    // Check for duplicate - normalize the extension number
+                    const normalizedExtension = String(row.extension).trim();
+                    const isDuplicate = checkExtensionExists(normalizedExtension);
+                    
+                    if (isDuplicate) {
+                        duplicateCount++;
+                        duplicates.push(normalizedExtension);
+                        continue;
+                    }
+
                     const department_id = getDepartmentIdByName(row.department);
                     const region_id = getRegionIdByName(row.region);
                     
                     const docRef = await addDoc(collection(db, 'extensions'), {
-                        extension: row.extension,
+                        extension: normalizedExtension,
                         name_ar: row.name_ar,
                         name_en: row.name_en,
                         job_title_ar: row.job_title_ar || '',
@@ -2284,13 +2375,14 @@
                     
                     allExtensions.push({
                         id: docRef.id,
-                        extension: row.extension,
+                        extension: normalizedExtension,
                         name_ar: row.name_ar,
                         name_en: row.name_en,
                         job_title_ar: row.job_title_ar || '',
                         job_title_en: row.job_title_en || '',
                         department_id: department_id || '',
-                        region_id: region_id || ''
+                        region_id: region_id || '',
+                        createdAt: new Date()
                     });
                     
                     successCount++;
@@ -2302,17 +2394,21 @@
                     return extA - extB;
                 });
 
-                alert(`Successfully imported ${successCount} extensions!`);
+                if (duplicateCount > 0) {
+                    showSnackbar(`Imported ${successCount} extensions. ${duplicateCount} duplicates skipped (${duplicates.slice(0, 5).join(', ')}${duplicates.length > 5 ? '...' : ''})`, 'warning');
+                } else {
+                    showSnackbar(`Successfully imported ${successCount} extensions!`, 'success');
+                }
                 
                 closeBulkImportModal();
                 filterAndDisplay();
                 if (isAdmin) {
-                    displayAdminExtensions();
+                    filterAndDisplayAdmin();
                     displayAnalytics();
                 }
             } catch (error) {
                 console.error('Error importing:', error);
-                alert('Error during import');
+                showSnackbar('Error during import', 'error');
             } finally {
                 confirmBtn.disabled = false;
                 confirmBtn.textContent = 'Confirm Import';
@@ -2419,8 +2515,11 @@
 
             try {
                 let successCount = 0;
+                let notFoundCount = 0;
+                
                 for (const row of updateData) {
-                    const q = query(collection(db, 'extensions'), where('extension', '==', row.extension));
+                    const normalizedExtension = String(row.extension).trim();
+                    const q = query(collection(db, 'extensions'), where('extension', '==', normalizedExtension));
                     const querySnapshot = await getDocs(q);
                     
                     if (!querySnapshot.empty) {
@@ -2448,20 +2547,26 @@
                         }
                         
                         successCount++;
+                    } else {
+                        notFoundCount++;
                     }
                 }
 
-                alert(`Successfully updated ${successCount} extensions!`);
+                if (notFoundCount > 0) {
+                    showSnackbar(`Updated ${successCount} extensions. ${notFoundCount} extensions not found.`, 'warning');
+                } else {
+                    showSnackbar(`Successfully updated ${successCount} extensions!`, 'success');
+                }
                 
                 closeBulkUpdateModal();
                 filterAndDisplay();
                 if (isAdmin) {
-                    displayAdminExtensions();
+                    filterAndDisplayAdmin();
                     displayAnalytics();
                 }
             } catch (error) {
                 console.error('Error updating:', error);
-                alert('Error during update');
+                showSnackbar('Error during update', 'error');
             } finally {
                 confirmBtn.disabled = false;
                 confirmBtn.textContent = 'Confirm Update';
@@ -2473,134 +2578,16 @@
         document.getElementById('regionFilter').addEventListener('change', filterAndDisplay);
         document.getElementById('departmentFilter').addEventListener('change', filterAndDisplay);
 
+        // Admin page event listeners
+        document.getElementById('adminSearchInput').addEventListener('input', filterAndDisplayAdmin);
+        document.getElementById('adminDepartmentFilter').addEventListener('change', filterAndDisplayAdmin);
+        document.getElementById('adminRegionFilter').addEventListener('change', filterAndDisplayAdmin);
+        document.getElementById('adminStatusFilter').addEventListener('change', filterAndDisplayAdmin);
+
         // Initialize
         initTheme();
         updateUILanguage();
         loadAllData();
-
-        // Custom Select Dropdowns
-        function initCustomSelects() {
-            const selects = document.querySelectorAll('.control-group select');
-            
-            selects.forEach(selectElement => {
-                if (selectElement.parentElement.classList.contains('custom-select') || 
-                    selectElement.closest('.modal')) {
-                    return;
-                }
-
-                const wrapper = document.createElement('div');
-                wrapper.className = 'custom-select';
-                selectElement.parentNode.insertBefore(wrapper, selectElement);
-                wrapper.appendChild(selectElement);
-
-                const selectedDiv = document.createElement('div');
-                selectedDiv.className = 'select-selected';
-                selectedDiv.textContent = selectElement.options[selectElement.selectedIndex].text;
-                wrapper.appendChild(selectedDiv);
-
-                const itemsDiv = document.createElement('div');
-                itemsDiv.className = 'select-items';
-
-                for (let i = 0; i < selectElement.options.length; i++) {
-                    const optionDiv = document.createElement('div');
-                    optionDiv.textContent = selectElement.options[i].text;
-                    optionDiv.dataset.value = selectElement.options[i].value;
-                    
-                    if (i === selectElement.selectedIndex) {
-                        optionDiv.classList.add('same-as-selected');
-                    }
-
-                    optionDiv.addEventListener('click', function(e) {
-                        const select = this.closest('.custom-select').querySelector('select');
-                        const selectedDisplay = this.closest('.custom-select').querySelector('.select-selected');
-                        
-                        select.value = this.dataset.value;
-                        selectedDisplay.textContent = this.textContent;
-
-                        this.parentElement.querySelectorAll('div').forEach(div => {
-                            div.classList.remove('same-as-selected');
-                        });
-                        this.classList.add('same-as-selected');
-
-                        selectedDisplay.classList.remove('select-arrow-active');
-                        this.parentElement.classList.remove('show');
-
-                        select.dispatchEvent(new Event('change'));
-                    });
-
-                    itemsDiv.appendChild(optionDiv);
-                }
-
-                wrapper.appendChild(itemsDiv);
-
-                selectedDiv.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    
-                    document.querySelectorAll('.select-items.show').forEach(item => {
-                        if (item !== itemsDiv) {
-                            item.classList.remove('show');
-                            item.previousElementSibling.classList.remove('select-arrow-active');
-                        }
-                    });
-
-                    this.classList.toggle('select-arrow-active');
-                    itemsDiv.classList.toggle('show');
-                });
-            });
-
-            document.addEventListener('click', function() {
-                document.querySelectorAll('.select-items.show').forEach(item => {
-                    item.classList.remove('show');
-                    item.previousElementSibling.classList.remove('select-arrow-active');
-                });
-            });
-        }
-
-        function updateCustomSelects() {
-            const customSelects = document.querySelectorAll('.custom-select');
-            customSelects.forEach(wrapper => {
-                const select = wrapper.querySelector('select');
-                const itemsDiv = wrapper.querySelector('.select-items');
-                const selectedDiv = wrapper.querySelector('.select-selected');
-
-                itemsDiv.innerHTML = '';
-
-                for (let i = 0; i < select.options.length; i++) {
-                    const optionDiv = document.createElement('div');
-                    optionDiv.textContent = select.options[i].text;
-                    optionDiv.dataset.value = select.options[i].value;
-                    
-                    if (i === select.selectedIndex) {
-                        optionDiv.classList.add('same-as-selected');
-                        selectedDiv.textContent = select.options[i].text;
-                    }
-
-                    optionDiv.addEventListener('click', function(e) {
-                        const thisSelect = this.closest('.custom-select').querySelector('select');
-                        const thisSelectedDisplay = this.closest('.custom-select').querySelector('.select-selected');
-                        
-                        thisSelect.value = this.dataset.value;
-                        thisSelectedDisplay.textContent = this.textContent;
-
-                        this.parentElement.querySelectorAll('div').forEach(div => {
-                            div.classList.remove('same-as-selected');
-                        });
-                        this.classList.add('same-as-selected');
-
-                        thisSelectedDisplay.classList.remove('select-arrow-active');
-                        this.parentElement.classList.remove('show');
-
-                        thisSelect.dispatchEvent(new Event('change'));
-                    });
-
-                    itemsDiv.appendChild(optionDiv);
-                }
-            });
-        }
-
-        setTimeout(() => {
-            initCustomSelects();
-        }, 500);
     </script>
 </body>
 </html>
